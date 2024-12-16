@@ -1,22 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My experiment</title>
+    <title>AIDI experiment</title>
+
+    <!-- Load jsPsych libraries -->
     <script src="jspsych/dist/jspsych.js"></script>
-    <script src="jspsych/dist/plugin-html-keyboard-response.js"></script> 
-    <script src="jspsych/dist/plugin-image-keyboard-response.js"></script>
-    <script src="jspsych/dist/plugin-preload.js"></script>
+    <script src="jspsych/dist/plugin-instructions.js"></script>
+    <script src="jspsych/dist/plugin-html-button-response.js"></script>
     <script src="jspsych/dist/plugin-survey-text.js"></script>
+    <script src="jspsych/dist/plugin-survey-likert.js"></script>
+    <script src="jspsych/dist/plugin-survey-multi-choice.js"></script>
+    <script src="jspsych/dist/plugin-survey-multi-select.js"></script>
+    <script src="jspsych/dist/plugin-html-slider-response.js"></script>
 
-    <script type="text/javascript" src="jspsych/dist/jquery-2.2.0.min.js"></script>
-    <script type="text/javascript" src="jspsych/dist/jspsych-7-pavlovia-2021.12.js"></script>
+    <!-- Load stimuli from the JS script we made -->
+    <script src="stimuli/JS files/AIDI_stim.js"></script>
 
+    <!-- Load jsPsych's default CSS styling script (which handles aesthetics) -->
     <link href="jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
   
+<style>
+      body {
+background-color: #F0F0F0;
+     } 
+.jspsych-display-element {
+line-height: 5em;
+color: black;
+}
+</style>
   </head>
   <body></body>
   <script>
 
+
+//------------------------------------//
+// Initialize jsPsych
+//------------------------------------//
 //First, we have to initialize jsPsych. We can do this by using the initJsPsych() function, and saving it to a variable called jsPsych
 //We are also adding the "jsPsych.data.displayData()" function, which will show us the raw data at the end of the experiment. 
 //Here, the "on_finish:" function is basically saying: at the end of the jsPsych experiment, run this function (i.e., the "jsPsych.data.displayData();" function), which will show us the raw data at the end of the experiment
@@ -27,146 +46,182 @@
   });
 
 
-//Define empty timeline array
-    var timeline = []
+//------------------------------------//
+// Initiate the jsPsych timeline
+//------------------------------------//
+  var timeline = []
 
 
-//For online experiments, it's recommended to preload image/video/audio files so that the timing of the stimuli presentation doesn't get messed up, since it's appearing on different web browsers. 
-//The preload plug-in is built specifically for this!
-//Create a variable that will store a pathway to all the image files we will use as part of this experiment, and preload them using the preload plugin below
-var image_files = ["stimuli/clownfish.jpg", "stimuli/caterpillar.jpg", "stimuli/polarbear.jpg", "stimuli/toucan.jpg"]
-
-
-//Use the preload plugin to load the image files
-var preload = {
-    type: jsPsychPreload,
-    images: image_files,
-}
-timeline.push(preload);
-
-
- /* initialize connection with pavlovia.org */
-    var pavlovia_init = { 
-    data: {
-        trial_id: "pavlovia_init"
-    },
-      type: jsPsychPavlovia, 
-      command: "init" 
-    }; 
-  timeline.push(pavlovia_init);
-  
-
-
-
-//Create the first experimental trial called "welcome" and use the html-keyboard-response plugin to print a message.
-//Add in HTML formatting to customize the welcome message
+//------------------------------------//
+// Text Instructions 
+//------------------------------------//
+//Create the first experimental trial called "welcome" and use the jsPsychInstructions plugin to print a message.
 var welcome = {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus: "<p style = 'font-size: 40px; color: blue;'>Welcome to the experiment! Press the space bar to begin.</p>",
-    choices: [' '],
-};
+    type: jsPsychInstructions,
+    pages: function(){
+    pageOne = "<p><div style ='font-size:2.5vw;'>Welcome to the experiment.</div></p>" +
+    "<p><div style ='font-size:5vw; color: green;'>Click next to begin.</div></p>"
+     return [pageOne]
+  },
+  show_clickable_nav: true
+}
 
-//Push the welcome trial to the experimental timeline
-timeline.push(welcome);
+
+
+//------------------------------------//
+// Text + Image instructions
+//------------------------------------//
+var experiment_instructions = {
+    type: jsPsychInstructions,
+    pages: function(){
+      pageOne =  "<p><div style ='font-size:2.5vw;'>You will be shown human- and AI-generated texts and pictures.</div></p>" +
+      "<p><div style ='font-size:2.5vw;'>Your goal is to determine whether the item orignates from humans or AI.</div></p>" +
+    "<img src='images/question_mark.jpeg' style='height: 25vh; position:fixed; right: 43vw; top: 4vh;''></img>"
+     return [pageOne]
+  },
+  show_clickable_nav: true
+}
+
+
+//------------------------------------//
+// Rentals Block 1
+//------------------------------------//
+var rentals_block_1_trial = {
+type: jsPsychHtmlButtonResponse,
+// stimulus: function() {
+//     return "<p><div style ='font-size: 3vw; font-family: Arial; text-align: left; position: fixed; left: 24vw; width: 56vw; height: 39vh; top: 13vh; line-height: 1.2em; border: .3vw transparent; padding: 1vh;'>"+jsPsych.timelineVariable('text_stimuli')+"</p>" +
+//     "<img src='"+jsPsych.timelineVariable('face_stimuli')+"' <div style= 'position:fixed; left: 33.2vw; width: 15vw; height: 20vh; top: 6vh;'></img>" +
+//     "<img src='"+jsPsych.timelineVariable('place_stimuli')+"' <div style= 'position:fixed; left: 33.2vw; width: 15vw; height: 20vh; top: 6vh;'></img>"
+// },
+stimulus: function() { 
+    return "<img src='"+jsPsych.timelineVariable('place_stimuli')+"' <div style= 'position:fixed; left: 33.2vw; width: 15vw; height: 20vh; top: 6vh;'></img>"
+},
+choices: ["<p style ='font-size:2.5vw; position: fixed; left: 24.8vw; bottom: 9vh;'><b>Human</b></p>", "<p style ='font-size: 2.5vw; position: fixed; right: 25.5vw; bottom: 9vh;'><b>AI</b></p>"],
+button_html: ['<button class="jspsych-btn" style = "width: 16vw; height: 8vh; position:fixed; left:23.5vw; bottom: 12vh" >%choice%</button>', '<button class="jspsych-btn" style = "width: 16vw; height: 8vh; position:fixed; right:23.3vw; bottom: 12vh" >%choice%</button>'],
+    }
 
 
 
-//Compile all the stimuli that you will be using in your experiment
-var task_stimuli = [
-  { animal: "stimuli/clownfish.jpg", name: 'Clownfish'},
-  { animal: "stimuli/caterpillar.jpg", name: 'Caterpillar'},
-  { animal: "stimuli/toucan.jpg", name: 'Toucan'},
-  { animal: "stimuli/polarbear.jpg", name: 'Polar Bear'}
+//------------------------------------//
+// Rentals Block 1 Timeline Procedure
+//------------------------------------//
+var rentals_block_1_procedure = {
+    timeline: [rentals_block_1_trial],
+    timeline_variables: stim,
+    };
+
+timeline.push(rentals_block_1_procedure)
+
+
+                                                //------------------------------------//
+                                                // Surveys/Questionnaires
+                                                //------------------------------------//
+
+//------------------------------------//
+// Likert-scale survey
+//------------------------------------//
+var QCAE_survey = {
+  type: jsPsychSurveyLikert,
+  preamble: "<p style ='font-size: 2.2vw;'><b>Please answer all of the questions on this page.</b></p>",
+  questions: [
+    {prompt: "<b>1. I sometimes find it difficult to see things from the 'other person's' point of view.</b>", name: 'QCAE_Q1', labels: ["Strongly Disagree", "Slightly Disagree", "Slightly Agree", "Strongly Agree"], required: true},
+    {prompt: "<b>2. I am usually objective when I watch a film or play, and I don't often get completely caught up in it.</b>", name: 'QCAE_Q2', labels: ["Strongly Disagree", "Slightly Disagree", "Slightly Agree", "Strongly Agree"], required: true},
+    {prompt: "<b>3. I try to look at everybody's side of a disagreement before I make a decision.</b>", name: 'QCAE_Q3', labels: ["Strongly Disagree", "Slightly Disagree", "Slightly Agree", "Strongly Agree"], required: true},
+]
+}
+
+//If all questions have the same answer option, we can make it even easier by defining the labels once instead of writing them out for each question
+//We can make a variable that stores the answer options and then reference that variable instead of writing the answer options out each time.
+var likert_scale = [
+  "Strongly Disagree", 
+  "Slightly Disagree", 
+  "Slightly Agree",
+  "Strongly Agree"
 ];
 
-
-
-//Create trial that shows a fixation cross
-var fixation = {
-  type: jsPsychHtmlKeyboardResponse,
-  stimulus: "<p style='font-size:100px;'>+</p>",
-  choices: "NO_KEYS",
-  trial_duration: 500,
-};
-
-
-
-//Create the stimuli presentation trial that you will iterate over
-var stimuli_presentation = {
-  type: jsPsychImageKeyboardResponse,
-  stimulus: jsPsych.timelineVariable('animal'),
-  prompt: '<p>Press a number 1-7 to indicate how much you like the image.</p>',
-  choices: ['1','2','3','4','5','6','7'],
-  stimulus_height: 500,
-  stimulus_width: 500,
-}
-
-
-
-//Organize phase 1 task procedure
-var phase1_procedure = {
-      timeline: [fixation, stimuli_presentation],
-      timeline_variables: task_stimuli,
-      randomize_order: true,
-    };
-
-//Push phase 1 procedure to experimental timeline
-timeline.push(phase1_procedure);
-
-
-
-//Create the memory test experimental trial that you will iterate over
-var memory_test = {
-  type: jsPsychSurveyText,
-  preamble: function() {
-        var stim = '<p style="font-size:40px;font-weight:bold;">'+jsPsych.timelineVariable('name')+'</p>';
-        return stim;
-    },
+var QCAE_survey_samelabels = {
+  type: jsPsychSurveyLikert,
+  preamble: "<p style ='font-size: 2.2vw;'><b>Please answer all of the questions on this page.</b></p>",
   questions: [
-    {prompt: 'Please type everything you can remember about the image of the animal listed above.', 
-    rows: 15, 
-    columns: 70, 
-    required: true}
-  ]
+    {prompt: "<b>1. I sometimes find it difficult to see things from the 'other person's' point of view.</b>", name: 'QCAE_Q1', labels: likert_scale, required: true},
+    {prompt: "<b>2. I am usually objective when I watch a film or play, and I don't often get completely caught up in it.</b>", name: 'QCAE_Q2', labels: likert_scale, required: true},
+    {prompt: "<b>3. I try to look at everybody's side of a disagreement before I make a decision.</b>", name: 'QCAE_Q3', labels: likert_scale, required: true},
+]
 }
 
 
-//Organize phase 2 task procedure
-var phase2_procedure = {
-      timeline: [fixation, memory_test],
-      timeline_variables: task_stimuli,
-      randomize_order: true,
-    };
-
-//Push phase 2 procedure to experimental timeline
-timeline.push(phase2_procedure);
-
-
-
-/* finish connection with pavlovia.org */
-    var pavlovia_finish = { 
-    data: {
-        trial_id: "pavlovia_finish"
-    },
-        type: jsPsychPavlovia, 
-        command: "finish",
-    }; 
-    timeline.push(pavlovia_finish);
-
-
-
-
-//Experiment has finished: Use the html-keyboard-response plugin to print a thank you message.
-var experiment_finished = {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Thank you for participating! Press "a" to exit.',
-    choices: ['a'],
-};
-
-//Push experiment_finished trial to experimental timeline
-timeline.push(experiment_finished);
+//------------------------------------//
+// Multiple Choice survey
+//------------------------------------//
+var MTES_SAS = {
+    type: jsPsychSurveyMultiChoice,
+    questions: [
+      {
+        prompt: "<b>1. I have missed planned work due to smartphone use</b>", 
+        horizontal: true,
+        name: 'MTES_SAS_MissedPlans', 
+        options: ['Strongly Disagree', 'Disagree', 'Weakly Disagree', 'Weakly Agree', 'Agree', 'Strongly Agree'], 
+        required: true
+      }, 
+      {
+        prompt: "<b>2. I have a hard time concentrating in class, while doing assignments, or while working due to smartphone use</b>", 
+        horizontal: true,
+        name: 'MTES_SAS_Concentrating', 
+        options: ['Strongly Disagree', 'Disagree', 'Weakly Disagree', 'Weakly Agree', 'Agree', 'Strongly Agree'], 
+        required: true
+      },
+      {
+        prompt: "<b>3. I feel pain in my wrists or at the back of my neck while using a smartphone</b>", 
+        horizontal: true,
+        name: 'MTES_SAS_Pain', 
+        options: ['Strongly Disagree', 'Disagree', 'Weakly Disagree', 'Weakly Agree', 'Agree', 'Strongly Agree'], 
+        required: true
+      }
+    ],
+  };
 
 
+//------------------------------------//
+// Multiple Select survey
+//------------------------------------//
+  var TechUse = {
+    type: jsPsychSurveyMultiSelect,
+    questions: [
+      {
+    prompt: "<p><div style = 'font-size: 1.5vw;'><b>Which of the following social media platforms do you use? (check all that apply)</b></div></p>", 
+    options: ['Instagram','Twitter','Facebook','Snapchat', 'TikTok','YouTube','Reddit','LinkedIn', 'Pinterest', 'WhatsApp', 'None of the above'],
+    name: 'TechUse_socialmedia',
+    required: true,
+      },
+      {
+    prompt: "<p><div style = 'font-size: 1.5vw;'><b>Which of the following AI systems do you use?</b></div></p>", 
+    options: ['ChatGPT', 'Google Gemini', 'Claude', 'None of the above'],
+    name: 'TechUse_AI',
+    required: true,
+      }
+    ],
+  }
+
+
+//------------------------------------//
+// Open-ended Text Response
+//------------------------------------//
+var AI_questions = {
+type: jsPsychSurveyText,
+questions: [
+  {prompt: "<p><div style ='font-size:2vw;'>What are your primary motivations for using AI?</div></p>", rows: 15, columns: 70, name: "AI_motivations", required: true}
+]
+}
+
+
+//------------------------------------//
+// Organize experimental procedure
+//------------------------------------//
+var AIDI_procedure = {
+    timeline: [welcome, experiment_instructions],
+
+}
+//timeline.push(AIDI_procedure);
 
 //Run the experiment!
   jsPsych.run(timeline);
