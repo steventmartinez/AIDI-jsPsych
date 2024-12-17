@@ -29,6 +29,7 @@ This workshop will cover how to use [jsPsych version 8.1.0](https://github.com/j
 
 
 ## Outline
+
 | Topic | Description 
 | :---: | :---: 
 | Workshop Overview | Set Up & Prerequisites
