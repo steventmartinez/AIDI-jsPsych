@@ -42,13 +42,13 @@ This workshop will cover how to use [jsPsych version 8.1.0](https://github.com/j
 
 ## Set Up & Prerequisites
 
-Before the workshop:
+Before the workshop: 
 
-1. Download Visual Studio Code, which is a programming-friendly text editor that works with Windows, OSX/Mac, and Linux, and can be downloaded at the following link:  https://code.visualstudio.com/Download
+1) Download the GitHub folder by clicking the green **Code**button and clicking the **Download ZIP** option. This folder has all the materials you will need for the workshop, including jsPsych version 8.1.0 (The jsPsych software is a set of files located in the jspsych/dist folder), the stimuli, and the experiment_practice.html script which is the main script we will be working with today.
 
-2. Download the latest release of jsPsych, which as of now is jsPsych 8.1.0. The jsPsych software is a set of files located in the jspsych/dist folder.
+2). Download Visual Studio Code, which is a programming-friendly text editor that works with Windows, OSX/Mac, and Linux, and can be downloaded at the following link:  https://code.visualstudio.com/Download
 
-3. Download the 'AIDI-jsPsych' folder from the Github page. This folder contains the following items: 1) the jsPsych software, which is essentially a set of files located in the *jsPsych/dist* folder; 2) the stimuli folder, which has the stimuli that we will use for this workshop; and 3) the index.html file, which is the full version of the experiment that we will build today.
+![](images/download_github.png){width=50%}
 
 
 # Setting Up Visual Studio Code
