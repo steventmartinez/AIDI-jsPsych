@@ -12,7 +12,7 @@ This workshop will cover how to use [jsPsych version 8.1.0](https://github.com/j
 
 2) Download Visual Studio Code, which is a programming-friendly text editor that works with Windows, OSX/Mac, and Linux, and can be downloaded at the following link:  https://code.visualstudio.com/Download
     
-![](images/download_github.png){width=50%}
+![](images/download_github.png)
 
 ## Workshop materials:
 - [Notebook Viewer](https://steventmartinez.github.io/AIDI-jsPsych/index.html)
