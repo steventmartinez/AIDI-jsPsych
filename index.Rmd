@@ -3,14 +3,13 @@ title: "AIDI workshop -- Intro to jsPsych"
 date: "12/17/2024"
 author: 
   - name: "**Content creator: Steven Martinez**"
-  - name: "**Content editors: Steven Martinez**"
 output:   
   html_document:
     toc: true
     toc_float: true
     toc_depth: 2
     df_print: paged
-    css: !expr here::here("misc/style_bootcamp.css")
+    css: !expr here::here("misc/style_bootcamp_sm.css")
 knit: (function(inputFile, encoding) { 
       out_dir <- './';
       rmarkdown::render(inputFile,
@@ -48,7 +47,7 @@ Before the workshop:
 
 1. Download Visual Studio Code, which is a programming-friendly text editor that works with Windows, OSX/Mac, and Linux, and can be downloaded at the following link:  https://code.visualstudio.com/Download
 
-2. Download the latest release of jsPsych, which as of now is jsPsych 7.3.3. The jsPsych software is a set of files located in the Dist Archive zipped folder
+2. Download the latest release of jsPsych, which as of now is jsPsych 8.1.0. The jsPsych software is a set of files located in the Dist Archive zipped folder
 
 3. Download the 'AIDI-jsPsych' folder from the Github page. This folder contains the following items: 1) the jsPsych software, which is essentially a set of files located in the *jsPsych/dist* folder; 2) the stimuli folder, which has the stimuli that we will use for this workshop; and 3) the index.html file, which is the full version of the experiment that we will build today.
 
@@ -57,12 +56,14 @@ Before the workshop:
 
 ## Open AIDI-jsPsych folder in VS Code
 
-To get things started, let's open the *AIDI-jsPsych* folder in Visual Studio Code Editor. In Visual Studio Code, you can click the folders icon in the top left, which will then show an Explorer menu. Click the "No Folder Opened" tab and then the "Open Folder" tab and navigate to the *AIDI-jsPsych* folder. 
+To get things started, let's open the *AIDI-jsPsych* folder in Visual Studio Code Editor. In Visual Studio Code, click the "File" tab then the "Open Folder" tab and navigate to wherever you have the *AIDI-jsPsych* folder downloaded. 
+
+Once you open the AIDI-jsPsych folder, you may have to click the Folder icon in the top left to see the full directory.
 
 Here's what your directory should look like once you've opened up the *AIDI-jsPsych* folder in Visual Studio Code.
 
 
-![](images/directory_structure.png){width=50%}
+![](images/VSCode_directory.png){width=40%}
 
 
 # Setting Up jsPsych
@@ -105,11 +106,14 @@ Next, let's run the script so we can see what the web page actually looks like!
 
 ## Test your script
 
-In Visual Studio Code, click the "Run" button in the top toolbar and then click "Start Debugging". A pop-up should appear indicating which browser you want to run the script in. Click your preferred browser. At this point, a blank web page should appear and the title of the tab will be "AIDI experiment -- practice". 
+In Visual Studio Code, click the "Run" button in the top toolbar and then click "**Start Debugging**". A pop-up may appear indicating which browser you want to run the script in. Click your preferred browser. 
 
 
-![](images/run_task.png){width=100%}
-![](images/my_experiment.png){width=50%}
+![](images/run_script.png){width=50%}
+
+At this point, a blank web page should appear and the title of the tab will be "AIDI experiment -- practice". 
+
+![](images/AIDI_experiment_tab.png){width=50%}
 
 ## Load in jsPsych libraries, task stimuli, jsPsych CSS file
 
@@ -126,11 +130,10 @@ In the **Load task stimuli from the CSV we made** section, I've converted our CS
 In the **Load jsPsych's default CSS styling script (which handles aesthetics)**, I've loaded in jsPsych's default CSS file. As a reminder, CSS is the code that is used to stylize/customize elements that appear on the HTML page, and the jsPsych creators developed their own CSS code for the purposes of jsPsych.
 
 ```
-
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AIDI experiment -- practice </title>
+    <title>AIDI experiment -- practice</title>
 
     <!-- Load jsPsych libraries -->
     <script src="jspsych/dist/jspsych.js"></script>
@@ -156,7 +159,6 @@ background-color: #F0F0F0;
   </head>
   <body></body>
 </html>
-
 ```
 
 
@@ -177,7 +179,7 @@ We'll add trials to this timeline array as we create them.
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AIDI experiment -- practice </title>
+    <title>AIDI experiment -- practice</title>
 
     <!-- Load jsPsych libraries -->
     <script src="jspsych/dist/jspsych.js"></script>
@@ -238,13 +240,13 @@ Now that we have jsPsych ready to go, we can start building the experiment! For 
 
 Each of these experimental modules use a different jsPsych plugin. The creators of jsPsych were kind enough to provide documentation that includes a demo of how each plugin works. I'll list the documentation and demo for each plugin in the order that each plugin is shown in the script below.
 
-**jsPsychInstructions**: https://www.jspsych.org/v8/plugins/instructions/
-**jsPsychHtmlButtonResponse**: https://www.jspsych.org/v8/plugins/html-button-response/
-**jsPsychHtmlSliderResponse**: https://www.jspsych.org/v8/plugins/html-slider-response/
-**jsPsychSurveyLikert**: https://www.jspsych.org/v8/plugins/survey-likert/
-**jsPsychSurveyMultiChoice**: https://www.jspsych.org/v8/plugins/survey-multi-choice/
-**jsPsychsurveyMultiSelect**: https://www.jspsych.org/v8/plugins/survey-multi-select/
-**jsPsychSurveyText**: https://www.jspsych.org/v8/plugins/survey-text/ 
+**jsPsychInstructions**: https://www.jspsych.org/v8/plugins/instructions/.<br>
+**jsPsychHtmlButtonResponse**: https://www.jspsych.org/v8/plugins/html-button-response/.<br>
+**jsPsychHtmlSliderResponse**: https://www.jspsych.org/v8/plugins/html-slider-response/.<br> 
+**jsPsychSurveyLikert**: https://www.jspsych.org/v8/plugins/survey-likert/.<br> 
+**jsPsychSurveyMultiChoice**: https://www.jspsych.org/v8/plugins/survey-multi-choice/.<br> 
+**jsPsychsurveyMultiSelect**: https://www.jspsych.org/v8/plugins/survey-multi-select/.<br> 
+**jsPsychSurveyText**: https://www.jspsych.org/v8/plugins/survey-text/. 
 
 
 Let's try going through each type of experimental module 1 at a time.
@@ -271,12 +273,14 @@ var welcome = {
 }
 ```
 
+![](images/text_instructions.png)
+
 Here's what the code to show instructions looks like. Let's break down each part of the code.
 
-**var welcome**: Create a trial object object called "welcome"
-**type**: The name of the jsPsych plugin we are using for this trial; in this case, we are using the jsPsychInstructions plugin.
-**pages** This part is a bit funky, but all we're doing here is defining the text we want to show to participants. Each line of code represents a separate line of text.
-**show_clickable_nav**: Show the previous/next buttons
+**var welcome**: Create a trial object object called "welcome"<br>
+**type**: The name of the jsPsych plugin we are using for this trial; in this case, we are using the jsPsychInstructions plugin.<br>
+**pages:** This part is a bit funky, but all we're doing here is defining the text we want to show to participants. Each line of code represents a separate line of text.<br>
+**show_clickable_nav**: Show the previous/next buttons<br>
 
 In the *pages* lines of code, you'll see that we are using CSS formatting to customize what the text looks like (i.e., font-size, color). Learning how to incorporate CSS formatting is a very important part of jsPsych. We'll talk about that more soon.
 
@@ -326,7 +330,7 @@ var experiment_instructions = {
       pageOne =  "<p><div style ='font-size:2.5vw;'>Next, you will see human- and AI-generated rental listings.</div></p>" +
       "<p><div style ='font-size:2.5vw;'>Your goal is to determine whether the rental listing</div></p>" +
       "<p><div style ='font-size:2.5vw;'>was generated by a human or AI.</div></p>" +
-    "<img src='images/question_mark.jpeg' style='width: 15vw; height: 25vh; position:fixed; right: 42vw; top: 2vh;''></img>"
+    "<img src='stimuli/question_mark.jpeg' style='width: 15vw; height: 25vh; position:fixed; right: 42vw; top: 2vh;''></img>"
      return [pageOne]
   },
   show_clickable_nav: true
@@ -335,20 +339,22 @@ var experiment_instructions = {
 timeline.push(experiment_instructions);
 ```
 
+![](images/text_image_instructions.png)
+
 We can break down this code in more detail below:
 
-**var experiment_instructions**: Create a trial object object called "experiment_instructions"
-**type**: The name of the jsPsych plugin we are using for this trial (still using the jsPsychInstructions plugin)
-**pages** The first 3 lines of this part of the code are the same as above, but as you can see, we added a 4th line to include the image of a question mark.
-**show_clickable_nav**: Show the previous/next buttons
+**var experiment_instructions**: Create a trial object object called "experiment_instructions".<br>
+**type**: The name of the jsPsych plugin we are using for this trial (still using the jsPsychInstructions plugin).<br>
+**pages** The first 3 lines of this part of the code are the same as above, but as you can see, we added a 4th line to include the image of a question mark.<br>
+**show_clickable_nav**: Show the previous/next buttons.
 
 The image line of code looks a bit different compared to the texts. You'll see that we have to use <img></img> tags to load in images. We also used new CSS formatting here, which I'll describe more below:
 
-**width**: Define the width of the image
-**height**: Define the height of the image
-**position**: Fixed (This means we want the image to always be in this position on everyone's computer screen).
-**right/left**: specify the horizontal positioning of the image
-**top/bottom**: specify the vertical positioning of the image
+**width**: Define the width of the image.<br>
+**height**: Define the height of the image.<br>
+**position**: Fixed (This means we want the image to always be in this position on everyone's computer screen).<br>
+**right/left**: specify the horizontal positioning of the image.
+**top/bottom**: specify the vertical positioning of the image.<br>
 
 You also may be noticing that, rather than using pixels as the unit of measurement, we are using "vw" and "vh".
 
@@ -360,8 +366,6 @@ Hopefully so far things are making sense! Next, let's shift to making an experim
 ## Experimental trials
 
 Okay unfortunately this will probably be the most complicated part of the workshop! Here we go (apologies in advance)
-
-![](images/run_task.png){width=100%}
 
 ```
 //------------------------------------//
@@ -382,13 +386,17 @@ button_html: (choice) => {
 
 ```
 
-**var rentals_trial**: Create a trial object called "rentals_trial"
-**type**: The name of the jsPsych plugin we are using for this trial (the jsPsychHtmlButtonResponse plugin)
-**stimulus**: Yuck! This part looks very confusing. All we're doing here is pulling AirBnb texts (text_stimuli), rental pictures (place_stimuli) and faces (face_stimuli) and formatting each item to define width/height, positioning, etc. 
-**choices**: Define the text that we want on each button, along with some CSS formatting to define the font-size and positioning of the text.
+![](images/rentals_trial1.png){width=60%}
+
+Let's go through each line of code to try and sort this out!
+
+**var rentals_trial**: Create a trial object called "rentals_trial".<br>
+**type**: The name of the jsPsych plugin we are using for this trial (the jsPsychHtmlButtonResponse plugin).<br>
+**stimulus**: Yuck! This part looks very confusing. All we're doing here is pulling AirBnb texts (text_stimuli), rental pictures (place_stimuli) and faces (face_stimuli) and formatting each item to define width/height, positioning, etc.<br>
+**choices**: Define the text that we want on each button, along with some CSS formatting to define the font-size and positioning of the text.<br>
 **button_html**: Customize the width/height and positioning of each button.
 
-Let's revisit the *stimuli* argument in this code chunk, because this is very important! We can find each variable (text_stimuli, place_stimuli, face_stimuli) by looking in the task stimuli JS file that we loaded in the beginning of the experiment (<script src="stimuli/JS files/AIDI_stim.js"></script>). This file represents the CSV file that we used to store the texts and image pathways for rental pictures and face pictures. This is essentially the same as pulling "columns" from the CSV file.
+Let's revisit the *stimuli* argument in this code chunk, because this is very important! We can find each variable (text_stimuli, place_stimuli, face_stimuli) by looking in the task stimuli JS file that we loaded in the beginning of the experiment (<script src="stimuli/JS files/AIDI_stim.js"></script>). This file represents the CSV file (which we then converted to the AIDI_stim.js file) that we used to store the texts and image pathways for rental pictures and face pictures. This is essentially the same as pulling "columns" from the CSV file.
 
 The code above will work for 1 trial. But what if we want to loop through all of the text, places, and faces stimuli?
 
@@ -397,7 +405,6 @@ jsPsych makes that relatively easy for us. We can create an experimental "proced
 Using an experimental procedure, rather than a single experimental trial, involves a subtle difference in how things get pushed to the timeline. Rather than pushing the **rentals_trial** object that we created above to the timeline, we have to push the entire experimental procedure to the timeline!
 
 ```
-
 //------------------------------------//
 // Rentals Timeline Procedure
 //------------------------------------//
@@ -407,22 +414,25 @@ var rentals_procedure = {
     };
 
 timeline.push(rentals_procedure);
-
 ```
+
+![](images/rentals_trial1.png){width=60%}<br>
+![](images/rentals_trial2.png){width=60%}<br>
+![](images/rentals_trial3.png){width=60%}
 
 We can walk through this code together:
 
-**var rentals_procedure**: Create an experimental proceudre called "rentals_procedure"
-**timeline**: The name of the trial that will repeat for all the stimuli included in the CSV/JS file that we made
-**timeline_variables**: The name of the array that contains all of the stimuli we will use
+**var rentals_procedure**: Create an experimental procedure called "rentals_procedure".<br>
+**timeline**: The name of the trial that will repeat for all the stimuli included in the CSV/JS file that we made.<br>
+**timeline_variables**: The name of the array that contains all of the stimuli we will use.<br>
 
 Then we push the entire procedure, which includes all the trials with all the stimuli from the CSV/JS file, to the timeline.
 
 This section covers some of the more common experimental modules and can hopefully serve as a basis for us to start building the AIDI experiment. Just to quickly review, we covered the following modules:
 
-**1)** Text instructions
-**2)** Text + Image instructions
-**3)** Experimental trials (Human/AI judgment task)
+**1)** Text instructions.<br>
+**2)** Text + Image instructions.<br>
+**3)** Experimental trials (Human/AI judgment task).<br>
 
 We'll still need to play around with CSS formatting to make everything look extra nice, but that can be sorted out later!
 
@@ -431,10 +441,10 @@ We'll still need to play around with CSS formatting to make everything look extr
 
 Next, we'll discuss how to prepare surveys and questionnaires! We'll go through a few different types of surveys together.
 
-**1)** Likert-scale survey
-**2)** Multiple choice survey
-**3)** Multiple select survey
-**4)** Open-ended text response
+**1)** Likert-scale survey.<br>
+**2)** Multiple choice survey.<br>
+**3)** Multiple select survey.<br>
+**4)** Open-ended text response.<br>
 
 
 ## Likert-scale survey
@@ -443,13 +453,13 @@ Let's start with surveys that use a Likert-style scale.
 
 As part of this survey, we'll borrow from the Questionnaire of Cognitive and Affective Empathy (QCAE) survey which uses Likert-style question to assess people's trait-level empathy. Here is a breakdown of the code parameters:
 
-**var QCAE_survey**: Create a trial object called "QCAE_survey"
-**type**: the name of the plugin for making Likert-scale surveys (jsPsychSurveyLikert)
-**preamble**: The header shown at the top of the page
-**questions**: This array [] reflects all the questions that we will show participants
-**prompt**: The question that you want to ask participants
-**name**: The name/ID of the question.
-**labels**: The answer options for each question
+**var QCAE_survey**: Create a trial object called "QCAE_survey".<br>
+**type**: the name of the plugin for making Likert-scale surveys (jsPsychSurveyLikert).<br>
+**preamble**: The header shown at the top of the page.<br>
+**questions**: This array [] reflects all the questions that we will show participants.<br>
+**prompt**: The question that you want to ask participants.<br>
+**name**: The name/ID of the question.<br>
+**labels**: The answer options for each question.<br>
 **required**: true/false. Determines whether the question is required or participant can skip the question
 
 ```
@@ -469,6 +479,9 @@ var QCAE_survey = {
 timeline.push(QCAE_survey);
 ```
 
+![](images/likert_survey.png)
+
+
 
 ## Multiple Choice Survey
 
@@ -478,13 +491,13 @@ This survey draws from the Smartphone Addiction Scale which uses multiple choice
 
 Let's walk through the code arguments:
 
-**var MTES_SAS**: Create a trial object called "MTES_SAS"
-**type**: the name of the plugin for making multiple choice surveys (jsPsychSurveyMultiChoice)
-**questions**: This array [] reflects all the questions that we will show participants
-**prompt**: The question that you want to ask participants
-**name**: The name/ID of the question.
-**options**: The answer options for each question
-**horizontal**: true/false. Define as true if you want the answer options to be shown horizontally, false for vertically.
+**var MTES_SAS**: Create a trial object called "MTES_SAS".<br>
+**type**: the name of the plugin for making multiple choice surveys (jsPsychSurveyMultiChoice).<br>
+**questions**: This array [] reflects all the questions that we will show participants.<br>
+**prompt**: The question that you want to ask participants.<br>
+**name**: The name/ID of the question.<br>
+**options**: The answer options for each question.<br>
+**horizontal**: true/false. Define as true if you want the answer options to be shown horizontally, false for vertically.<br>
 **required**: true/false. Determines whether the question is required or participant can skip the question
 
 ```
@@ -520,8 +533,9 @@ var MTES_SAS = {
   
 
 timeline.push(MTES_SAS);
-
 ```
+
+![](images/multiple_choice_survey.png)
 
 
 ## Multiple Select Survey
@@ -532,12 +546,12 @@ This survey draws from the Mobile Technology Engagement Scale (MTES) which asses
 
 Here's what the code looks like:
 
-**var TechUse**: Create a trial object called "TechUse"
-**type**: the name of the plugin for making multiple choice surveys (jsPsychSurveyMultiSelect)
-**questions**: This array [] reflects all the questions that we will show participants
-**prompt**: The question that you want to ask participants
-**name**: The name/ID of the question.
-**options**: The answer options for each question
+**var TechUse**: Create a trial object called "TechUse".<br>
+**type**: the name of the plugin for making multiple choice surveys (jsPsychSurveyMultiSelect).<br>
+**questions**: This array [] reflects all the questions that we will show participants.<br>
+**prompt**: The question that you want to ask participants.<br>
+**name**: The name/ID of the question.<br>
+**options**: The answer options for each question.<br>
 **required**: true/false. Determines whether the question is required or participant can skip the question
 
 ```
@@ -565,8 +579,9 @@ Here's what the code looks like:
   }
   
 timeline.push(TechUse);
-
 ```
+
+![](images/multiple_select_survey.png)
 
 
 ## Open-ended Text Response
@@ -575,13 +590,13 @@ Open-ended text responses are exactly what they sound like -- basically just a t
 
 Let's break down this code in more detail:
 
-**var AI_questions**: Create a trial object called "AI_questions"
-**type**: the name of the plugin for making multiple choice surveys (jsPsychSurveyText)
-**questions**: This array [] reflects all the questions that we will show participants
-**prompt**: The question that you want to ask participants
-**rows**: How long you want the text box to be. Default value is 1.
-**columns**: How wide you want the text box to be. Default value is 40.
-**name**: The name/ID of the question.
+**var AI_questions**: Create a trial object called "AI_questions".<br>
+**type**: the name of the plugin for making multiple choice surveys (jsPsychSurveyText).<br>
+**questions**: This array [] reflects all the questions that we will show participants.<br>
+**prompt**: The question that you want to ask participants.<br>
+**rows**: How long you want the text box to be. Default value is 1.<br>
+**columns**: How wide you want the text box to be. Default value is 40.<br>
+**name**: The name/ID of the question.<br>
 **required**: true/false. Determines whether the question is required or participant can skip the question
 
 ```
@@ -600,14 +615,240 @@ questions: [
 }
 
 timeline.push(AI_questions);
-
 ```
+
+![](images/open_ended_text_response.png)
 
 Now, so far we've been pushing each individual trial to the timeline, which can get repetitive and redundant! We can use the same timeline procedure that we used for the rentals_procedure for the entire experiment.
 
 Let's see what that looks like. **In order for this to work properly, we'll need to delete all instances of timeline.push() that we've included in the script thus far**.
 
 ```
+//------------------------------------//
+// Organize experimental procedure
+//------------------------------------//
+var AIDI_procedure = {
+    timeline: [welcome, experiment_instructions, rentals_procedure, QCAE_survey, MTES_SAS, TechUse, AI_questions],
+}
+timeline.push(AIDI_procedure);
+```
+
+As you can see, we are creating a new trial object called "AIDI_procedure" and defining the timeline with all the trials that we are interested in using for the experiment, and then we are just pushing this mega procedure at the very end before we run the experiment.
+
+This is a helpful way to keep track of the sequence of trials in a experiment.
+
+
+# Conclusion
+
+In case it helps to see it all together, this is what the complete script should look like (which is also in the AIDI_experiment_complete.html file in the AIDI-jsPsych folder we downloaded).
+
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AIDI experiment</title>
+
+    <!-- Load jsPsych libraries -->
+    <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-instructions.js"></script>
+    <script src="jsPsych/dist/plugin-html-button-response.js"></script>
+    <script src="jspsych/dist/plugin-survey-text.js"></script>
+    <script src="jspsych/dist/plugin-survey-likert.js"></script>
+    <script src="jspsych/dist/plugin-survey-multi-choice.js"></script>
+    <script src="jspsych/dist/plugin-survey-multi-select.js"></script>
+    <script src="jspsych/dist/plugin-html-slider-response.js"></script>
+    
+    <!-- Load stimuli from the JS script we made -->
+    <script src="stimuli/JS files/AIDI_stim.js"></script>
+
+    <!-- Load jsPsych's default CSS styling script (which handles aesthetics) -->
+    <link href="jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
+  
+<style>
+      body {
+background-color: #F0F0F0;
+     } 
+.jspsych-display-element {
+line-height: 5em;
+color: black;
+}
+</style>
+  </head>
+  <body></body>
+  <script>
+
+
+//------------------------------------//
+// Initialize jsPsych
+//------------------------------------//
+  var jsPsych = initJsPsych({
+    on_finish: function() {
+      jsPsych.data.displayData();
+    }
+  });
+
+
+//------------------------------------//
+// Initiate the jsPsych timeline
+//------------------------------------//
+  var timeline = []
+
+
+//------------------------------------//
+// Text Instructions 
+//------------------------------------//
+var welcome = {
+    type: jsPsychInstructions,
+    pages: function(){
+    pageOne = "<p><div style ='font-size:2.5vw;'>Welcome to the experiment.</div></p>" +
+    "<p><div style ='font-size:5vw; color: green;'>Click next to begin.</div></p>"
+     return [pageOne]
+  },
+  show_clickable_nav: true
+}
+
+// timeline.push(welcome);
+
+
+
+//------------------------------------//
+// Text + Image instructions
+//------------------------------------//
+var experiment_instructions = {
+    type: jsPsychInstructions,
+    pages: function(){
+      pageOne =  "<p><div style ='font-size:2.5vw;'>Next, you will see human- and AI-generated rental listings.</div></p>" +
+      "<p><div style ='font-size:2.5vw;'>Your goal is to determine whether the rental listing</div></p>" +
+      "<p><div style ='font-size:2.5vw;'>was generated by a human or AI.</div></p>" +
+    "<img src='stimuli/question_mark.jpeg' style='width: 15vw; height: 25vh; position:fixed; right: 42vw; top: 2vh;''></img>"
+     return [pageOne]
+  },
+  show_clickable_nav: true
+}
+
+// timeline.push(experiment_instructions);
+
+
+
+//------------------------------------//
+// Rentals Trial
+//------------------------------------//
+var rentals_trial = {
+type: jsPsychHtmlButtonResponse,
+stimulus: () => {
+  return `<img src="${jsPsych.evaluateTimelineVariable('place_stimuli')}" <div style= "position:fixed; width: 25vw; height: 35vh; left: 55vw; top: 6vh;"></img>` +
+    `<img src="${jsPsych.evaluateTimelineVariable('face_stimuli')}" <div style= "position:fixed; width: 25vw; height: 35vh; left: 26vw; top: 6vh;"></img>` +
+    `<p><div style ='font-size: 1.7vw; font-family: Arial; text-align: left; position: fixed; left: 24vw; width: 56vw; height: 30vh; bottom: 22vh; line-height: 1.2em; border: .3vw transparent; padding: 1vh;'>${jsPsych.evaluateTimelineVariable('text_stimuli')}</p>` 
+},
+choices: ["<p style ='font-size:2vw; position: fixed; left: 38vw; bottom: 8vh;'><b>Human</b></p>", "<p style ='font-size: 2vw;position: fixed; right: 41vw; bottom: 8vh'><b>AI</b></p>"],
+button_html: (choice) => {
+  return `<button class="jspsych-btn" style="width: 15vw; height: 8vh; position: relative; top: 35vh;">${choice}</button>`
+  }
+}
+
+//------------------------------------//
+// Rentals Timeline Procedure
+//------------------------------------//
+var rentals_procedure = {
+    timeline: [rentals_trial],
+    timeline_variables: rentals_stim,
+    };
+
+// timeline.push(rentals_procedure);
+
+
+                                                //------------------------------------//
+                                                // Surveys/Questionnaires
+                                                //------------------------------------//
+
+//------------------------------------//
+// Likert-scale survey
+//------------------------------------//
+var QCAE_survey = {
+  type: jsPsychSurveyLikert,
+  preamble: "<p style ='font-size: 2.2vw;'><b>Please answer all of the questions on this page.</b></p>",
+  questions: [
+    {prompt: "<b>1. I sometimes find it difficult to see things from the 'other person's' point of view.</b>", name: 'QCAE_Q1', labels: ["Strongly Disagree", "Slightly Disagree", "Slightly Agree", "Strongly Agree"], required: true},
+    {prompt: "<b>2. I am usually objective when I watch a film or play, and I don't often get completely caught up in it.</b>", name: 'QCAE_Q2', labels: ["Strongly Disagree", "Slightly Disagree", "Slightly Agree", "Strongly Agree"], required: true},
+    {prompt: "<b>3. I try to look at everybody's side of a disagreement before I make a decision.</b>", name: 'QCAE_Q3', labels: ["Strongly Disagree", "Slightly Disagree", "Slightly Agree", "Strongly Agree"], required: true},
+]
+}
+
+// timeline.push(QCAE_survey);
+
+//------------------------------------//
+// Multiple Choice survey
+//------------------------------------//
+var MTES_SAS = {
+    type: jsPsychSurveyMultiChoice,
+    questions: [
+      {
+        prompt: "<b>1. I have missed planned work due to smartphone use</b>", 
+        name: 'MTES_SAS_MissedPlans', 
+        options: ['Strongly Disagree', 'Disagree', 'Weakly Disagree', 'Weakly Agree', 'Agree', 'Strongly Agree'], 
+        horizontal: true,
+        required: true
+      }, 
+      {
+        prompt: "<b>2. I have a hard time concentrating in class, while doing assignments, or while working due to smartphone use</b>", 
+        name: 'MTES_SAS_Concentrating', 
+        options: ['Strongly Disagree', 'Disagree', 'Weakly Disagree', 'Weakly Agree', 'Agree', 'Strongly Agree'], 
+        horizontal: true,
+        required: true
+      },
+      {
+        prompt: "<b>3. I feel pain in my wrists or at the back of my neck while using a smartphone</b>", 
+        name: 'MTES_SAS_Pain', 
+        options: ['Strongly Disagree', 'Disagree', 'Weakly Disagree', 'Weakly Agree', 'Agree', 'Strongly Agree'],
+        horizontal: true, 
+        required: true
+      }
+    ],
+  };
+
+// timeline.push(MTES_SAS);
+
+//------------------------------------//
+// Multiple Select survey
+//------------------------------------//
+  var TechUse = {
+    type: jsPsychSurveyMultiSelect,
+    questions: [
+      {
+    prompt: "<p><div style = 'font-size: 1.5vw;'><b>Which of the following social media platforms do you use? (check all that apply)</b></div></p>", 
+    options: ['Instagram','Twitter','Facebook','Snapchat', 'TikTok','YouTube','Reddit','LinkedIn', 'Pinterest', 'WhatsApp', 'None of the above'],
+    name: 'TechUse_socialmedia',
+    horizontal: false, 
+    required: true,
+      },
+      {
+    prompt: "<p><div style = 'font-size: 1.5vw;'><b>Which of the following AI systems do you use?</b></div></p>", 
+    options: ['ChatGPT', 'Google Gemini', 'Claude', 'None of the above'],
+    name: 'TechUse_AI',
+    horizontal: false, 
+    required: true,
+      }
+    ],
+  }
+
+// timeline.push(TechUse);
+
+//------------------------------------//
+// Open-ended Text Response
+//------------------------------------//
+var AI_questions = {
+type: jsPsychSurveyText,
+questions: [
+  {prompt: "<p><div style ='font-size:2vw;'>What are your primary motivations for using AI?</div></p>", 
+  rows: 15, 
+  columns: 70, 
+  name: "AI_motivations", 
+  required: true}
+]
+}
+
+// timeline.push(AI_questions);
+
 
 //------------------------------------//
 // Organize experimental procedure
@@ -618,15 +859,19 @@ var AIDI_procedure = {
 timeline.push(AIDI_procedure);
 
 
+//------------------------------------//
+// Run the experiment
+//------------------------------------//
+  jsPsych.run(timeline);
+
+  </script>
+</html>
+
 ```
-
-As you can see, we are creating a new trial object called "AIDI_procedure" and defining the timeline with all the trials that we are interested in using for the experiment, and then we are just pushing this mega procedure at the very end before we run the experiment.
-
-This is a helpful way to keep track of the sequence of trials in a experiment.
-
-
-# Conclusion
 
 Hopefully this has been helpful! jsPsych can feel very intimidating, but once you get a better idea of the syntax structure, hopefully it doesn't feel too hard.
 
 Feel free to Slack me if you have any questions as things move forward and let's start putting the AIDI experiment together!!!
+
+
+![](images/chatgpt.jpeg)
