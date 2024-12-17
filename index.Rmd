@@ -44,7 +44,7 @@ This workshop will cover how to use [jsPsych version 8.1.0](https://github.com/j
 
 Before the workshop: 
 
-1) Download the GitHub folder by clicking the green **Code**button and clicking the **Download ZIP** option. This folder has all the materials you will need for the workshop, including jsPsych version 8.1.0 (The jsPsych software is a set of files located in the jspsych/dist folder), the stimuli, and the experiment_practice.html script which is the main script we will be working with today.
+1) Download the GitHub folder by clicking the green **Code** button and clicking the **Download ZIP** option. This folder has all the materials you will need for the workshop, including jsPsych version 8.1.0 (The jsPsych software is a set of files located in the jspsych/dist folder), the stimuli, and the experiment_practice.html script which is the main script we will be working with today.
 
 2). Download Visual Studio Code, which is a programming-friendly text editor that works with Windows, OSX/Mac, and Linux, and can be downloaded at the following link:  https://code.visualstudio.com/Download
 
