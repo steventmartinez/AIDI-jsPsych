@@ -1,4 +1,4 @@
-var stim = [
+var rentals_block_one_stim = [
   {
     "rental_link": "https://www.airbnb.com/rooms/36211766?search_mode=regular_search&check_in=2025-01-10&check_out=2025-01-17&source_impression_id=p3_1734376069_P3Bt-7c-AT6vMyfY&previous_page_section_name=1000&federated_search_id=70bd0486-e2d5-4547-b349-7c9d522da3ad",
     "rental_company": "AirBnb",
@@ -27,7 +27,7 @@ var stim = [
     "city": "Tampa",
     "text_stimuli": "Welcome to your slice of paradise in this stunning Key West style home situated in Tampa's coveted neighborhood of Bayshore Beautiful. This million-dollar oasis is a perfect blend of luxury, comfort, and island charm. Three bed-- 2 1/2 bathrooms will accommodate both the vacationing family or a business traveler. Located moments from Hyde Park Village and Bayshore Blvd. The only downside here is choosing between a culinary adventure or a day exploring one of our world famous beaches!",
     "text_type": "Human",
-    "place_stimuli": "stimuli/places/Human - Places/AirBnb_place_tampa_2_human",
+    "place_stimuli": "stimuli/places/Human - Places/AirBnb_place_tampa_2_human.png",
     "place_type": "Human",
     "face_stimuli": "stimuli/faces/Human - Faces/1.R.W.F.png",
     "face_type": "Human"

@@ -7,12 +7,13 @@
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-instructions.js"></script>
     <script src="jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="jsPsych/dist/plugin-html-button-response.js"></script>
     <script src="jspsych/dist/plugin-survey-text.js"></script>
     <script src="jspsych/dist/plugin-survey-likert.js"></script>
     <script src="jspsych/dist/plugin-survey-multi-choice.js"></script>
     <script src="jspsych/dist/plugin-survey-multi-select.js"></script>
     <script src="jspsych/dist/plugin-html-slider-response.js"></script>
-
+    
     <!-- Load stimuli from the JS script we made -->
     <script src="stimuli/JS files/AIDI_stim.js"></script>
 
@@ -66,8 +67,6 @@ var welcome = {
   show_clickable_nav: true
 }
 
-
-
 //------------------------------------//
 // Text + Image instructions
 //------------------------------------//
@@ -88,29 +87,25 @@ var experiment_instructions = {
 //------------------------------------//
 var rentals_block_1_trial = {
 type: jsPsychHtmlButtonResponse,
-// stimulus: function() {
-//     return "<p><div style ='font-size: 3vw; font-family: Arial; text-align: left; position: fixed; left: 24vw; width: 56vw; height: 39vh; top: 13vh; line-height: 1.2em; border: .3vw transparent; padding: 1vh;'>"+jsPsych.timelineVariable('text_stimuli')+"</p>" +
-//     "<img src='"+jsPsych.timelineVariable('face_stimuli')+"' <div style= 'position:fixed; left: 33.2vw; width: 15vw; height: 20vh; top: 6vh;'></img>" +
-//     "<img src='"+jsPsych.timelineVariable('place_stimuli')+"' <div style= 'position:fixed; left: 33.2vw; width: 15vw; height: 20vh; top: 6vh;'></img>"
-// },
-stimulus: function() { 
-    return "<img src='"+jsPsych.timelineVariable('place_stimuli')+"' <div style= 'position:fixed; left: 33.2vw; width: 15vw; height: 20vh; top: 6vh;'></img>"
+stimulus: () => {
+  return `<img src="${jsPsych.evaluateTimelineVariable('place_stimuli')}" <div style= "position:fixed; width: 25vw; height: 35vh; top: 6vh;"></img>`
 },
-choices: ["<p style ='font-size:2.5vw; position: fixed; left: 24.8vw; bottom: 9vh;'><b>Human</b></p>", "<p style ='font-size: 2.5vw; position: fixed; right: 25.5vw; bottom: 9vh;'><b>AI</b></p>"],
-button_html: ['<button class="jspsych-btn" style = "width: 16vw; height: 8vh; position:fixed; left:23.5vw; bottom: 12vh" >%choice%</button>', '<button class="jspsych-btn" style = "width: 16vw; height: 8vh; position:fixed; right:23.3vw; bottom: 12vh" >%choice%</button>'],
-    }
-
-
+choices: ["Human", "AI"],
+button_html: (choice) => {
+  return `<button class="jspsych-btn" style="width: 15vw; height: 8vh;">${choice}</button>`, `<button class="jspsych-btn" style="width: 5vw; height: 4vh;">${choice}</button>`
+  }
+}
 
 //------------------------------------//
 // Rentals Block 1 Timeline Procedure
 //------------------------------------//
 var rentals_block_1_procedure = {
     timeline: [rentals_block_1_trial],
-    timeline_variables: stim,
+    timeline_variables: rentals_block_one_stim,
     };
 
 timeline.push(rentals_block_1_procedure)
+
 
 
                                                 //------------------------------------//
@@ -217,11 +212,12 @@ questions: [
 //------------------------------------//
 // Organize experimental procedure
 //------------------------------------//
-var AIDI_procedure = {
-    timeline: [welcome, experiment_instructions],
+// var AIDI_procedure = {
+//     timeline: [welcome, rentals_block_1_procedure],
 
-}
-//timeline.push(AIDI_procedure);
+// }
+// timeline.push(AIDI_procedure);
+
 
 //Run the experiment!
   jsPsych.run(timeline);
