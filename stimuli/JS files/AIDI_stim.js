@@ -1,4 +1,4 @@
-var rentals_block_one_stim = [
+var rentals_stim = [
   {
     "rental_link": "https://www.airbnb.com/rooms/36211766?search_mode=regular_search&check_in=2025-01-10&check_out=2025-01-17&source_impression_id=p3_1734376069_P3Bt-7c-AT6vMyfY&previous_page_section_name=1000&federated_search_id=70bd0486-e2d5-4547-b349-7c9d522da3ad",
     "rental_company": "AirBnb",

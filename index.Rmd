@@ -1,9 +1,9 @@
 ---
-title: "Temple University Coding Outreach Group Summer Workshop -- Intro to jsPsych"
-date: "05/13/2023"
+title: "AIDI workshop -- Intro to jsPsych"
+date: "12/17/2024"
 author: 
   - name: "**Content creator: Steven Martinez**"
-  - name: "**Content editors: Katie Jobson & Billy Mitchell**"
+  - name: "**Content editors: Steven Martinez**"
 output:   
   html_document:
     toc: true
@@ -26,23 +26,21 @@ knitr::opts_chunk$set(echo = TRUE, error = FALSE)
 
 # Description
 
-This workshop will cover how to use [jsPsych version 7.3.3](https://github.com/jspsych/jsPsych/releases/tag/jspsych%407.3.3) to build psychological experiments. jsPsych is a free, open-source software that employs a JavaScript framework for creating behavioral experiments that run in a web browser. It's a popular alternative to PsychoPy and E-Prime for task development, can be used in both behavioral and neuroimaging tasks, and supports online study capabilities.
-
-
+This workshop will cover how to use [jsPsych version 8.1.0](https://github.com/jspsych/jsPsych/releases/tag/jspsych%408.1.0) to build psychological experiments. jsPsych is a free, open-source software that employs a JavaScript framework for creating behavioral experiments that run in a web browser. It's a popular alternative to PsychoPy and E-Prime for task development, can be used in both behavioral and neuroimaging tasks, and supports online study capabilities.
 
 
 ## Outline
 
-| Topic | Description | Time |
-| :---: | :---: | :---: |
-| Intro | Workshop overview | 5 mins |
-| Setting up a jsPsych script | jsPsych and Visual Studio Code set-up | 10 mins |
-| Building an experimental trial | Learning how to integrate Javascript, HTML, and CSS | 15 mins |
-| Building a full experiment | Trials, Procedures, and Timelines | 25 mins |
-| Conclusion & General Notes | Review, Pavlovia compatibility, tutorial suggestions, etc. | 5 mins | 
+| Topic | Description 
+| :---: | :---: 
+| Workshop Overview | Set Up & Prerequisites
+| Setting Up Visual Studio Code | Open AIDI-jsPsych folder in VS Code
+| Setting Up jsPsych | Learning how to integrate Javascript, HTML, and CSS 
+| Experimental Templates | Trials, Procedures, and Timelines 
+| Surveys and Questionnaires | Likert-style, multiple choice, multiple select, open-ended
 
 
-# --- Intro: Workshop Overview ---
+# Workshop Overview
 
 ## Set Up & Prerequisites
 
@@ -50,155 +48,126 @@ Before the workshop:
 
 1. Download Visual Studio Code, which is a programming-friendly text editor that works with Windows, OSX/Mac, and Linux, and can be downloaded at the following link:  https://code.visualstudio.com/Download
 
-2. Download the latest release of jsPsych, which as of now is jsPsych 7.3.3. The jsPsych software is a set of files located in the Dist Archive zipped folder at the following link (https://github.com/jspsych/jsPsych/releases/tag/jspsych%407.3.3).
+2. Download the latest release of jsPsych, which as of now is jsPsych 7.3.3. The jsPsych software is a set of files located in the Dist Archive zipped folder
 
-3. Download the 'jsPsych_workshop' folder from the TU COG Github. This is the folder containing the 'stimuli' folder, which has images that we will use as part of the experimental task. We will be working in this "jsPsych_workshop" folder for the purposes of this workshop and we will be saving our experimental task file to this folder.
-
-
-
-# Intro to jsPych
-
-Now, let's watch the intro video and then get started on the workshop!
+3. Download the 'AIDI-jsPsych' folder from the Github page. This folder contains the following items: 1) the jsPsych software, which is essentially a set of files located in the *jsPsych/dist* folder; 2) the stimuli folder, which has the stimuli that we will use for this workshop; and 3) the index.html file, which is the full version of the experiment that we will build today.
 
 
-```{r Intro Video, echo = FALSE}
-vembedr::embed_url("https://www.youtube.com/watch?v=-wmu1B3tXJQ")
-```
+# Setting Up Visual Studio Code
 
-Today will begin with an introduction to the syntax structure that jsPsych uses, which relies on JavaScript, HTML, and CSS. After the introduction, we will create a task using jsPsych. 
+## Open AIDI-jsPsych folder in VS Code
 
-HTML stands for HyperText Markup Language and is the code that is used to structure a web page and its content.
-CSS stands for Cascading Style Sheets language and is the code that is used to stylize/customize elements that appear on the HTML page
-JavaScript is the programming language that is used to make interactive webpages. Ultimately, jsPsych, through JavaScript, has built-in plugins that work with HTML and CSS capabilities in order to run an experimental task on web browsers.
+To get things started, let's open the *AIDI-jsPsych* folder in Visual Studio Code Editor. In Visual Studio Code, you can click the folders icon in the top left, which will then show an Explorer menu. Click the "No Folder Opened" tab and then the "Open Folder" tab and navigate to the *AIDI-jsPsych* folder. 
 
-
-
-
-# --- Setting up the jsPsych script | jsPsych and Visual Studio Code set-up --- 
-
-## Getting Started in Visual Studio Code
-
-Once you've downloaded the jsPsych software (the Dist Archive zip file) you'll want to move the jsPsych software (which should exist as a folder called "jspsych" after you unzip the Dist Archive file) to the "jsPsych_workshop" that you downloaded from the GitHub. We will be working in this "jsPsych_workshop" folder for the purposes of this workshop. 
-
-Please also make sure that you've already downloaded Visual Studio Code at the following link: https://code.visualstudio.com/Download
-
-We will be using the Visual Studio Code editor to write our jsPsych script!
-
-![](images/jsPsych_download.png){width=70%}
-
-
-## Directory Structure
-
-The first thing that we'll do is open up Visual Studio Code and navigate to the "jsPsych_workshop" folder that we just created. In Visual Studio Code, you can click the folders icon in the top left, which will then show an Explorer menu. Click the "No Folder Opened" tab and then the "Open Folder" tab and navigate to the "jsPsych_workshop" folder. Next, you want to drag the "jspsych" folder that we just downloaded (which contains the jsPsych software files) to the "jsPsych_workshop" folder. Then, create a new file called "jsPsych_experiment.html" and save it in the "jsPsych_workshop" folder. 
-
-Here's what your directory should look like with the "stimuli" folder, the "jspsych" folder, and the newly created "jsPsych_experiment.html" file saved directly in the "jsPsych_workshop" directory:
+Here's what your directory should look like once you've opened up the *AIDI-jsPsych* folder in Visual Studio Code.
 
 
 ![](images/directory_structure.png){width=50%}
 
 
+# Setting Up jsPsych
 
-## Step 1: Create an HTML file
+Today will start with an introduction to the syntax structure that jsPsych uses, which relies on JavaScript, HTML, and CSS.
 
-The first step will be to add some basic code that nearly all HTML documents have in common. Here's a typical bare-bones HTML document. This HTML code allows JavaScript to run scripts on a web page.
+**HTML** stands for HyperText Markup Language and is the code that is used to structure a web page and its content.
+**CSS** stands for Cascading Style Sheets language and is the code that is used to stylize/customize elements that appear on the HTML page
+**JavaScript** is the programming language that is used to make interactive webpages. Ultimately, jsPsych, through JavaScript, has built-in plugins that work with HTML and CSS capabilities in order to make a web page functional. Think clicking buttons, submitting keyboard responses, viewing images, etc.
+
+We'll be using HTML, CSS, and JavaScript together throguhout out experiment. Before we do that, let's get our script set-up!
+
+
+## Create an HTML file
+
+First, let's open up the **experiment_practice.html** file in the AIDI-jsPsych folder. This is a completely empty script, but we will use this script to start putting our experiment together.
+
+To get things started, we need to add some basic code that nearly all HTML documents have in common. This HTML code allows JavaScript to run scripts on a web page.
 
 ```
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My experiment</title>
+    <title>AIDI experiment -- practice</title>
+  
+<style>
+      body {
+background-color: #F0F0F0;
+     } 
+</style>
   </head>
   <body></body>
 </html>
+
 ```
 
+This code may look like a lot, but really isn't doing that much. All we are doing here is saying, make an HTML document with a gray background (background-color: #F0F0F0) and make the title of the tab "AIDI experiment -- practice".
 
+Next, let's run the script so we can see what the web page actually looks like!
 
+## Test your script
 
-## Step 2: Testing your script
-
-Now that we've added some code to our script, let's open up the script on a web page and see what it looks like. In Visual Studio Code, click the "Run" button in the top toolbar and then click "Start Debugging". A pop-up should appear indicating which browser you want to run the script in. Click the browser. At this point, a blank web page should appear and the title of the page will be "My experiment". 
-
+In Visual Studio Code, click the "Run" button in the top toolbar and then click "Start Debugging". A pop-up should appear indicating which browser you want to run the script in. Click your preferred browser. At this point, a blank web page should appear and the title of the tab will be "AIDI experiment -- practice". 
 
 
 ![](images/run_task.png){width=100%}
 ![](images/my_experiment.png){width=50%}
 
-# --- Building an experimental trial | Learning how to integrate Javascript, HTML, and CSS --- #
+## Load in jsPsych libraries, task stimuli, jsPsych CSS file
 
-## Step 3: Loading in jsPsych
+To use jsPsych, we need to load in the plugins that will let us use different functions (i.e., collecting keyboard responses, button responses, etc.)
 
-In case the context helps, plugins to jsPsych are what libraries are to R and Python. In order to use jsPsych, we will need to load the relevant plugins that we want to use to create the experimental trials. This is similar to loading a library in R or Python.
+To load a plugin, we need to add a \<script\> \<\/script\> tag. These tags work like parentheses, such that a script tag needs to be opened, filled with text, and then closed.
 
-To load a plugin, we need to add a \<script\> \<\/script\> tag. Tags, such as the \<script\> tag, work similarly to parentheses, such that a tag needs to be opened and closed as such: \<script "blah blah blah"\> \<\/script\>. 
+To make things easier, I've filled in the script tags for us. 
 
-After opening the script tag, we will use the "src" function and copy the pathway to the "jspsych.js" file, which is located in the jspsych\/dist\/ folder that we downloaded from the Dist Archive zip file. Below, I'm attaching the \<script\> tag with the pathway to the "jspsych.js" file included. 
+In the **Load Psych libraries** section, you can see that I am just pulling files from the jspsych/Dist folder. The jsPsych.js file is the main jsPsych file. The different plugins (instructions.js, html-button-response.js, survey-text.js, etc) contain the different functionalities that we will use to build our experiment.
 
-As you can see, the \<script\> tag code applies the following structure: \<script "blah blah blah"\> \</script\>. Again, it helps me to think of these tags as parentheses (), except that the tags use the \<\> and \<\/\> structure. You can see the other tag codes, such as html, head, and body use the same \<\> and \<\/\> structure.
+In the **Load task stimuli from the CSV we made** section, I've converted our CSV file into a JS file, so that we can use it to load in our stimuli for the experiment.
 
+In the **Load jsPsych's default CSS styling script (which handles aesthetics)**, I've loaded in jsPsych's default CSS file. As a reminder, CSS is the code that is used to stylize/customize elements that appear on the HTML page, and the jsPsych creators developed their own CSS code for the purposes of jsPsych.
 
 ```
+
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My experiment</title>
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/jspsych.js"></script>
-  </head>
-  <body></body>
-</html>
-```
+    <title>AIDI experiment -- practice </title>
 
-## Step 5: Load the jsPsych CSS stylesheet
+    <!-- Load jsPsych libraries -->
+    <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-instructions.js"></script>
+    <script src="jsPsych/dist/plugin-html-button-response.js"></script>
+    <script src="jspsych/dist/plugin-survey-text.js"></script>
+    <script src="jspsych/dist/plugin-survey-likert.js"></script>
+    <script src="jspsych/dist/plugin-survey-multi-choice.js"></script>
+    <script src="jspsych/dist/plugin-survey-multi-select.js"></script>
+    <script src="jspsych/dist/plugin-html-slider-response.js"></script>
+    
+    <!-- Load task stimuli from the CSV we made -->
+    <script src="stimuli/JS files/AIDI_stim.js"></script>
 
-Next, we will load the jsPsych CSS stylesheet, which basically imports the standard visual styles that jsPsych uses by default. Importantly, this will also allow us to customize some of the aesthetics of the task, such as font size, font color, background color, etc. 
-
-In order to load the jsPsych stylesheet, we will need to add a \<link\> tag to the \<head\> section of the document. In the \<link\> tag, we will copy the pathway to the file called "jspsych.css" that is located in the jspsych\/dist\/ folder. We'll also need to include some CSS-specific bits of code before we close out the \<link\> tag in order for the CSS file to properly work.
-
-```
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>My experiment</title>
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/jspsych.js"></script>
+    <!-- Load jsPsych's default CSS styling script (which handles aesthetics) -->
+    <link href="jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
   
-    <link href="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
+<style>
+      body {
+background-color: #F0F0F0;
+     } 
+</style>
   </head>
   <body></body>
 </html>
+
 ```
 
-## Step 6: Create a script element and initialize jsPsych
+
+
+## Initialize jsPsych
 
 To add JavaScript code directly to the webpage, we will need to add a pair of \<script\> \<\/script\> tags after the \<body\> tags. Anything that is included in between these \<script\> \<\/script\> tags will define the experimental script.
 
-To initialize jsPsych, we will need to use the initJsPsych() function, and save it to a variable called "jsPsych". We can add this line of code in between the \<script\> and \<\/script\> tags below. 
+To initialize jsPsych, we will need to use the initJsPsych() function, and save it to a variable called "jsPsych".
 
-I'll start adding comments next to some lines of code in case that may be helpful. Comments, which are typically prefaced in R and Python with #, are prefaced with "\/\/" in JavaScript.
-
-```
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>My experiment</title>
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/jspsych.js"></script>
-  
-    <link href="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body></body>
-  <script>
-
-//First, we have to initialize jsPsych. We can do this by using the initJsPsych() function, and saving it to a variable called jsPsych
-var jsPsych = initJsPsych();
-
-  </script>
-</html>
-```
-
-
-
-## Step 7: Understanding what a jsPsych timeline is and how to use it
-
-All jsPsych experiments are defined by a timeline. The timeline is an array that contains the set of trials we want to run in the experiment. 
+All jsPsych experiments are defined by a timeline. The timeline is an array that contains the set of trials we want to run in the experiment. At the very end of the script, you'll see the command *jsPsych.run(timeline);*.
 
 We can define an empty timeline array by creating a variable called "timeline" and assigning empty brackets to reflect an empty timeline array.
 
@@ -208,160 +177,38 @@ We'll add trials to this timeline array as we create them.
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My experiment</title>
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/jspsych.js"></script>
+    <title>AIDI experiment -- practice </title>
 
-    <link href="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
-  
-  </head>
-  <body></body>
-  <script>
-
-//First, we have to initialize jsPsych. We can do this by using the initJsPsych() function, and saving it to a variable called jsPsych
-    var jsPsych = initJsPsych();
-
-
-//Define empty timeline array
-    var timeline = [];
-
-  </script>
-</html>
-```
-
-## Step 8: Loading a jsPsych plugin to display a welcome message.
-
-Let's say we want to show a welcome message to the participant. To do this, we can use the html-keyboard-response plugin. In order to use the plugin, we need to load it with a \<script\> tag. We will load the html-keyboard-response plugin just like we loaded in jsPsych earlier.
-
-
-```
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>My experiment</title>
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/jspsych.js"></script>
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/plugin-html-keyboard-response.js"></script> // adding the html-keyboard response plugin here
-
-    <link href="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
-  
-  </head>
-  <body></body>
-  <script>
-
-//First, we have to initialize jsPsych. We can do this by using the initJsPsych() function, and saving it to a variable called jsPsych
-    var jsPsych = initJsPsych();
-
-  </script>
-</html>
-```
-
-## Step 9: Creating an experimental trial
-
-Now that we've loaded the html-keyboard-response plugin, we can create the first experimental trial that uses the html-keyboard-response plugin and contains a simple string to show the subject. Let's greet the participant with a simple welcome message: "Welcome to the experiment. Press the space bar to begin".
-
-One important thing to note is that each jsPsych plugin has its own unique knobs\/parameters that we can turn on or off depending on what we want to accomplish. These knobs are described in detail on each plugins documentation page, as well as demo of how each plugin works which is super helpful and can be used as models to build your own code! Here is the link to the html-keyboard-response plugin documentation page: https://www.jspsych.org/7.0/plugins/html-keyboard-response/. 
-
-In order to create a trial that uses the html-keyboard-response plugin, let's create a trial object called "welcome".
-
-At this point, it may be helpful to know that creating a trial and using a plugin always follows the same basic structure.
-
-1) Create a trial object and call it whatever you want (i.e., "welcome")
-2) Use the {} brackets to start and end the trial object
-3) The "type" property will always reflect the name of the plugin you are using. You can easily find out what the name of your plugin is by opening up the plugin file in the \/jspsych\/dist\/ folder (for the html-keyboard-response plugin, the file would be plugin-html-keyboard-response.js) and checking the name of the variable at the top.
-4) The "stimulus" property will always reflect the stimuli that you want to present to the participant (i.e., text, images, videos, etc.)
-5) We will also use the "choices" parameter, however, not all plugins have this "choice" parameter. Again, each plugin has its own unique knobs\/parameters that you can toggle on/off depending on what you'd like to accomplish.
-
-
-For our purposes, let's use the following knobs of the html-keyboard response plugin
-
-1) type: jsPsychHtmlKeyboardResponse (the plugin we're using for this trial)
-2) stimulus: "Welcome to the experiment. Press the space bar to begin" (the string we'll show to participants)
-3) choices: [' '] (since we want participants to press the space bar to advance to the next trial)
-
-
-```
-//Create the first experimental trial called "welcome" and use the html-keyboard-response plugin to print a welcome message.
-    var welcome = {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: 'Welcome to the experiment. Press the space bar to begin.'
-      choices: [' '],
-    }
-```
-
-
-
-
-
-## Step 10: Adding the welcome trial to the experimental timeline
-
-In order to add the welcome trial to the experiment, we will need to push it to the timeline array that we created earlier. By pushing the welcome trial to the timeline, this will add it to the end of the experimental array.
-
-```
-//Create the first experimental trial called "welcome" and use the html-keyboard-response plugin to print a welcome message.
-    var welcome = {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: 'Welcome to the experiment. Press the space bar to begin.'
-      choices: [' '],
-    }
+    <!-- Load jsPsych libraries -->
+    <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-instructions.js"></script>
+    <script src="jsPsych/dist/plugin-html-button-response.js"></script>
+    <script src="jspsych/dist/plugin-survey-text.js"></script>
+    <script src="jspsych/dist/plugin-survey-likert.js"></script>
+    <script src="jspsych/dist/plugin-survey-multi-choice.js"></script>
+    <script src="jspsych/dist/plugin-survey-multi-select.js"></script>
+    <script src="jspsych/dist/plugin-html-slider-response.js"></script>
     
-//Push the welcome trial to the experimental timeline
-  timeline.push(welcome);
-```
+    <!-- Load task stimuli from the CSV we made -->
+    <script src="stimuli/JS files/AIDI_stim.js"></script>
 
-## Step 11: Displaying the Data
-jsPsych has a built-in function called "jsPsych.data.displayData()" that is useful for debugging your experiment. At the end of the experiment, it will show you all the raw data you've collected so far. It's especially helpful for checking the data during task development to see what data you're collecting and what data you may be missing.
-
-All we need to do is tweak the code that we used to initialize jsPsych in Step 6
-
-We will be using jsPsych's "on_finish" function, which basically calls functions to run at the end of the experiment. In this case, we are telling jsPsych to run the jsPsych.data.displayData() function at the end of the experiment so that we can see what data we've collected
-
-```
-//Below, we are adding the "jsPsych.data.displayData()" function, which will show us the raw data at the end of the experiment. 
-//Here, the "on_finish:" function is basically saying: at the end of the jsPsych experiment, run this function (in this case, the jsPsych.data.displayData() function), which will show us the raw data at the end of the experiment
-  var jsPsych = initJsPsych({
-    on_finish: function() {
-      jsPsych.data.displayData();
-    }
-  });
-```
-
-## Step 12: Preparing to run the experiment
-
-Now that we have the timeline defined with the experimental trials that we want to run (in this case, just the welcome trial), we need to tell jsPsych to run this experiment.
-
-We can get jsPsych to run the experiment by adding the jsPsych.run() function and passing in the array that defines the experiment timeline.
-
-Again, the timeline is just an array containing the list of trials to run.
-
-```
-//Run the experiment!
-  jsPsych.run(timeline);
-```
-
-
-## Step 13: Run the experiment!
-
-At this point, this is what your code should look like.
-
-Just like we did when we tested the script earlier, let's open up the script on a web page and see what the experiment looks like.  
-
-
-```
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>My experiment</title>
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/jspsych.js"></script>
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/plugin-html-keyboard-response.js"></script> 
-
-    <link href="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
+    <!-- Load jsPsych's default CSS styling script (which handles aesthetics) -->
+    <link href="jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
   
+<style>
+      body {
+background-color: #F0F0F0;
+     } 
+</style>
   </head>
   <body></body>
+
   <script>
 
-//First, we have to initialize jsPsych. We can do this by using the initJsPsych() function, and saving it to a variable called jsPsych
-//We are also adding the "jsPsych.data.displayData()" function, which will show us the raw data at the end of the experiment. 
-//Here, the "on_finish:" function is basically saying: at the end of the jsPsych experiment, run this function (i.e., the "jsPsych.data.displayData();" function), which will show us the raw data at the end of the experiment
+
+//------------------------------------//
+// Initialize jsPsych
+//------------------------------------//
   var jsPsych = initJsPsych({
     on_finish: function() {
       jsPsych.data.displayData();
@@ -369,536 +216,417 @@ Just like we did when we tested the script earlier, let's open up the script on 
   });
 
 
-//Define empty timeline array
-    var timeline = []
-
-//Create the first experimental trial called "welcome" and use the html-keyboard-response plugin to print a welcome message.
-    var welcome = {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: 'Welcome to the experiment. Press the space bar to begin.'
-      choices: [' '],
-    }
-
-//Push the welcome trial to the experimental timeline
-  timeline.push(welcome);
+//------------------------------------//
+// Initiate the jsPsych timeline
+//------------------------------------//
+  var timeline = []
 
 
-//Run the experiment!
-  jsPsych.run(timeline);
+//------------------------------------//
+// Run the experiment
+//------------------------------------//
+jsPsych.run(timeline);
 
   </script>
 </html>
 ```
 
 
-![](images/welcome.png){width=80%}
+# Experimental Templates
+
+Now that we have jsPsych ready to go, we can start building the experiment! For the rest of the workshop, I'm going to show a template of some of the more common types of experimental modules (i.e., instructions, experimental trials, surveys/questionnaires). My hope is that we can use each of these modules as a template to build the AIDI experiment. 
+
+Each of these experimental modules use a different jsPsych plugin. The creators of jsPsych were kind enough to provide documentation that includes a demo of how each plugin works. I'll list the documentation and demo for each plugin in the order that each plugin is shown in the script below.
+
+**jsPsychInstructions**: https://www.jspsych.org/v8/plugins/instructions/
+**jsPsychHtmlButtonResponse**: https://www.jspsych.org/v8/plugins/html-button-response/
+**jsPsychHtmlSliderResponse**: https://www.jspsych.org/v8/plugins/html-slider-response/
+**jsPsychSurveyLikert**: https://www.jspsych.org/v8/plugins/survey-likert/
+**jsPsychSurveyMultiChoice**: https://www.jspsych.org/v8/plugins/survey-multi-choice/
+**jsPsychsurveyMultiSelect**: https://www.jspsych.org/v8/plugins/survey-multi-select/
+**jsPsychSurveyText**: https://www.jspsych.org/v8/plugins/survey-text/ 
 
 
+Let's try going through each type of experimental module 1 at a time.
 
-## Step 14: Using HTML formatting to customize the welcome trial
-In order to customize text, images, etc., we need to add HTML formatting code to the experimental trial.
 
-Below are some short notes about HTML formatting:
+## Text Instructions
+
+To start an experiment, it's pretty common to show a welcome message. jsPsych has an [instructions] (https://www.jspsych.org/v8/plugins/instructions/) plugin that makes showing instructions pretty straightforward.
+
+Copy this code and paste it a few rows under the **var timeline = []** code.
+
+```
+//------------------------------------//
+// Text Instructions 
+//------------------------------------//
+var welcome = {
+    type: jsPsychInstructions,
+    pages: function(){
+    pageOne = "<p><div style ='font-size:2.5vw;'>Welcome to the experiment.</div></p>" +
+    "<p><div style ='font-size:5vw; color: green;'>Click next to begin.</div></p>"
+     return [pageOne]
+  },
+  show_clickable_nav: true
+}
+```
+
+Here's what the code to show instructions looks like. Let's break down each part of the code.
+
+**var welcome**: Create a trial object object called "welcome"
+**type**: The name of the jsPsych plugin we are using for this trial; in this case, we are using the jsPsychInstructions plugin.
+**pages** This part is a bit funky, but all we're doing here is defining the text we want to show to participants. Each line of code represents a separate line of text.
+**show_clickable_nav**: Show the previous/next buttons
+
+In the *pages* lines of code, you'll see that we are using CSS formatting to customize what the text looks like (i.e., font-size, color). Learning how to incorporate CSS formatting is a very important part of jsPsych. We'll talk about that more soon.
 
 The \<p\> \<\/p\> tag defines a paragraph.
 The "style" attribute on a \<p\> tag assigns a unique style to that paragraph.
-Here, we are using the <\p\> tag and the "style" attribute to change the "font-size" parameter to 50px and the "color" parameter to blue.
-
-There are tons of other style knobs we can change, such as font-family, font-style (i.e., bold, italic), and text positioning (top, center, bottom)
-
-For illustrative purposes, let's change the font-size to 40 pixels and the font color to blue.
-
-Now let's run the script again to see what the experimental trial looks like now
-
-```
-//Create the first experimental trial called "welcome" and use the html-keyboard-response plugin to print a message.
-//Add in HTML formatting to customize the welcome message
-    var welcome = {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: "<p style = 'font-size: 40px; color: blue;'>Welcome to the experiment! Press the space bar to begin.</p>", 
-      choices: [' '],
-    };
-```
+Here, we are using the <\p\> tag and the "style" attribute to change the "font-size" parameter to 2.5vw and the "color" parameter to green.
 
 
 
-![](images/welcome_blue.png){width=60%}
+## Pushing trial to timeline
 
+This is arguably the most important part of working with jsPsych! In order to add the **welcome** trial to the experiment, we will need to push it to the empty timeline array [] that we created earlier.
 
-# --- Building a full experiment | Trials, Procedures, and Timelines --- ###
+By pushing the welcome trial to the timeline, this will add the the trial to the experiment.
 
-
-
-## Step 15: Building a full experiment -- Loading additional plugins
-I hope creating and customizing the welcome trial has given you a foundational understanding as to how we can begin to build experimental trials. Next, we are going to use some additional plugins.
-
-Before we start building the experimental task, we need to load in some extra plugins that we will be using for future experimental trials. Let's load in the following two plugins: image-keyboard-response, and survey-text
+Copy this code and paste it under the **Text Instructions** code chunk.
 
 ```
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>My experiment</title>
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/jspsych.js"></script>
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/plugin-html-keyboard-response.js"></script> 
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/plugin-image-keyboard-response.js"></script>
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/plugin-survey-text.js"></script>
-
-    <link href="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
-  
-  </head>
-  <body></body>
-  <script>
-```
-
-
-## Step 16: Building a full experiment-- Organize all the stimuli that will make up our experimental trials
-
-Suppose we want to create a memory experiment that has 2 phases. Phase 1 of the experiment is where a set of animal images are being presented for the first time and participants will rate how much they like each image on a scale of 1-7. In between each image, a fixation cross will be displayed on the screen. In phase 2, participants will complete a free recall test where they will see the name of each animal they previously saw and type as much as they can remember about each animal image.
-
-jsPsych has a special feature called "Timeline variables" which allow us to loop through the animal images and names without building a function or a for loop. Importantly, let's say we want to use plugin "A" for the phase 1 experimental trial and plugin "B" for the phase 2 experimental trial; timeline variables allow us to do just that!
-
-To start, let's make an array that contains all of the different trials that we want to run in Phase 1 (the presentation of animal images). There are only four images of animals and we will only show each image once, so there will be four trials in this experiment. However, because we will later present the names of each animal and ask participants to describe as much as they can remember about the images of the animals, we also need to include the names of the animal.
-
-We will create an array called "task_stimuli" that has an object called "animal" which includes the pathway to each animal image located in the "stimuli" folder that we downloaded at the start of the workshop. We will do this for all four images. After each "animal" object, we will then create another object called "name", which includes the name of each animal.
-
-
-```
-//Compile all the stimuli that you will be using in your experiment
-var task_stimuli = [
-  { animal: "/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/stimuli/clownfish.jpg", name: 'Clownfish'},
-  { animal: "/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/stimuli/caterpillar.jpg", name: 'Caterpillar'},
-  { animal: "/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/stimuli/toucan.jpg", name: 'Toucan'},
-  { animal: "/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/stimuli/polarbear.jpg", name: 'Polar Bear'}
-];
-```
-
-
-## Step 17: Building a full experiment -- Create a trial that shows a fixation cross
-
-Next, we will create a trial that will show a fixation cross in between each image.
-
-We will create a trial object called "fixation" and use the following knobs of the html-keyboard-response plugin:
-
-1) type: jsPsychHtmlKeyboardReseponse (since this is the plugin we will be using)
-2) stimulus: create a fixation cross by using the \<p\> \<\/p\> script tag and the "style" attribute to make a "+" bigger so that it resembles a fixation cross
-3) choices: "NO_KEYS" (this is the jsPsych equivalent to say that no keyboard press can end the trial)
-4) trial_duration: 500  (since we want all participants to observe the fixation cross for 500 milliseconds)
-
-
-```
-//Create trial that shows a fixation cross
-var fixation = {
-  type: jsPsychHtmlKeyboardResponse,
-  stimulus: "<p style='font-size:100px;'>+</p>",
-  choices: "NO_KEYS",
-  trial_duration: 500,
-};
-```
-
-
-
-
-## Step 18: Building a full experiment -- Build Phase 1 stimuli presentation experimental trial that you will iterate over for each of the four animal images
-
-Next, we will create the stimuli presentation trial that will iterate over each of the four animal images.
-
-We will create a trial object called "stimuli_presentation" and use the following knobs of the image-keyboard-response plugin:
-
-1) type: jsPsychImageKeyboardReseponse (since this is the plugin we will be using)
-2) stimulus: jsPsych.timelineVariable('animal') (since this is the object we used to define each of our animal images in the task_stimuli array)
-3) prompt: "Press a number 1-7 to indicate how much you like the image." (the string that we will show to participants)
-4) choices: 1-7 (since these are the answer options we are defining. As a result, jsPsych will not accept any other keyboard press besides 1-7)
-5) stimulus_height: whatever we want the height of the image to be. Here, I'm choosing to make it 500 px.
-6) stimulus_width: whatever we want the width of the image to be. Here, I'm choosing to make it 500 px.
-
-
-```
-//Create the stimuli presentation trial that we will iterate over
-var stimuli_presentation = {
-  type: jsPsychImageKeyboardResponse,
-  stimulus: jsPsych.timelineVariable('animal'),
-  prompt: '<p>Press a number 1-7 to indicate how much you like the image.</p>',
-  choices: ['1','2','3','4','5','6','7'],
-  stimulus_height: 500,
-  stimulus_width: 500,
-}
-```
-
-
-## Step 19: Building a full experiment -- Organize phase 1 task procedure
-
-Now that we have the phase 1 experimental trial and the fixation cross trial, we will organize the phase 1 experimental procedure to put everything together.
-
-We will create an object called "phase1_procedure" and use jsPsych's timeline array and timeline variables function.
-
-1) timeline: [fixation, stimuli_presentation]. Earlier in the workshop, we used the "timeline.push" function to push the welcome trial to the experimental timeline array. Another way to organize the timeline is to create a pre-defined timeline array that includes the trials that you want to use as part of your timeline. With this pre-defined timeline array, the task will loop over the fixation and stimuli_presentation trials, for as many stimuli as we defined in the task_stimuli array.
-2) timeline_variables: task_stimuli. Timeline_variables can be thought of as synonymous with stimuli that we want to show to participants. Since we want to loop over the four images of the animals, we have to reference the task_stimuli object that contains the pathway to the images of the animals.
-3) randomize_order: true. jsPsych has a helpful, built-in randomization function that we can turn on or off. In this case, where we are turning the randomization on, this just means that participants will always see a fixation trial first, and then a stimuli_presentation trial, but it will randomize the order of the stimuli_presentation trials (which means the order of the animal images will be randomized!)
-
-Lastly, you'll want to use the "timeline.push" function to push the phase1_procedure to the timeline.
-
-
-Of note, there is more than one way to push a trial object to the experimental timeline
--We can push individual experimental trials, like we did with the welcome message trial
--Or we can organize specific experimental trials in an experimental procedure, and then push that experimental procedure to the experimental timeline!
-
-
-```
-//Organize phase 1 task procedure
-    var phase1_procedure = {
-      timeline: [fixation, stimuli_presentation],
-      timeline_variables: task_stimuli,
-      randomize_order: true,
-    };
-  
-//Push phase 1 procedure to experimental timeline  
-timeline.push(task_procedure);
-```
-
-
-
-## Step 20: Building a full experiment -- Run Phase 1
-
-At this point, this is what your code should look like. Let's run the experiment as it is to see what it looks like!
-
-```
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>My experiment</title>
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/jspsych.js"></script>
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/plugin-html-keyboard-response.js"></script> 
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/plugin-image-keyboard-response.js"></script>
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/plugin-survey-text.js"></script>
-
-    <link href="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
-  
-  </head>
-  <body></body>
-  <script>
-
-//First, we have to initialize jsPsych. We can do this by using the initJsPsych() function, and saving it to a variable called jsPsych
-//We are also adding the "jsPsych.data.displayData()" function, which will show us the raw data at the end of the experiment. 
-//Here, the "on_finish:" function is basically saying: at the end of the jsPsych experiment, run this function (i.e., the "jsPsych.data.displayData();" function), which will show us the raw data at the end of the experiment
-  var jsPsych = initJsPsych({
-    on_finish: function() {
-      jsPsych.data.displayData();
-    }
-  });
-
-
-//Define empty timeline array
-    var timeline = []
-
-//Create the first experimental trial called "welcome" and use the html-keyboard-response plugin to print a message.
-//Add in HTML formatting to customize the welcome message
-    var welcome = {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: "<p style = 'font-size: 40px; color: blue;'>Welcome to the experiment! Press the space bar to begin.</p>",
-      choices: [' '],
-    };
-
-//Push the welcome trial to the experimental timeline
-  timeline.push(welcome);
-  
-  
-//Compile all the stimuli that you will be using in your experiment
-var task_stimuli = [
-  { animal: "/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/stimuli/clownfish.jpg", name: 'Clownfish'},
-  { animal: "/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/stimuli/caterpillar.jpg", name: 'Caterpillar'},
-  { animal: "/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/stimuli/toucan.jpg", name: 'Toucan'},
-  { animal: "/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/stimuli/polarbear.jpg", name: 'Polar Bear'}
-];
-
-
-
-//Create trial that shows a fixation cross
-var fixation = {
-  type: jsPsychHtmlKeyboardResponse,
-  stimulus: "<p style='font-size:100px;'>+</p>",
-  choices: "NO_KEYS",
-  trial_duration: 500,
-};
-
-
-//Create the stimuli presentation trial that you will iterate over
-var stimuli_presentation = {
-  type: jsPsychImageKeyboardResponse,
-  stimulus: jsPsych.timelineVariable('animal'),
-  prompt: '<p>Press a number 1-7 to indicate how much you like the image.</p>',
-  choices: ['1','2','3','4','5','6','7'],
-  stimulus_height: 500,
-  stimulus_width: 500,
-}
-
-
-//Organize phase 1 task procedure
-    var phase1_procedure = {
-      timeline: [fixation, stimuli_presentation],
-      timeline_variables: task_stimuli,
-      randomize_order: true,
-    };
-    
-//Push phase 1 procedure to experimental timeline    
-timeline.push(task_procedure);
-    
-    
-
-//Run the experiment!
-  jsPsych.run(timeline);
-
-
-  </script>
-</html>
-```
-
-
-
-## Step 21: Building a full experiment -- Build Phase 2 memory test trials
-
-Just like we did with the stimuli_presentation trial, we will need to create a memory test experimental trial that will iterate over the names of the animals that we defined in the task_stimuli object
-
-Let's create a trial object called "memory_test" and use the following knobs of the survey-text plugin that we loaded in earlier:
-
-1) type: jsPsychSurveyText (since this is the plugin we will be using)
-2) preamble: The preamble parameter reflects the HTML formatted string displayed at the top of the page above all the questions. In this case, we ant to show the names of the animals that we defined earlier as part of the "task_stimulus" object. So this time, instead of using jsPsych.timelineVariable('animal') to pull the images of the animals, we will use jsPsych.timelineVariable('name') to pull the names text. Additionally, since we are using timeline variables as stimuli, we have to use a function in order to be able to apply the \<p\> \<\/p\> script tags and the "style" attribute to customize the sizing of the animal names text. To be fair, we don't actually need to apply this function, but that would mean that the font of the animal names would look exactly like the prompt (i.e., trial instructions) that will be described below, and sometimes it's helpful to make certain text stand out!
-3) questions:  Each question contains a prompt, required, rows, and columns parameter that will be applied to the question.
-  a) prompt: 'Please recall as much as you can remember about the image of the animal listed above' (the string we will show to participants)
-  b) rows: 15 (this is the height of the text box where participants can write in their answer. Default value is 5)
-  c) columns: 70 (this is the width of the text box where participants can write in their answer. Default value is 40)
-  d) required: true (this ensures that participants must provide an answer before they can advance to the next trial)
-
-```
-//Create the memory test experimental trial that you will iterate over
-var memory_test = {
-  type: jsPsychSurveyText,
-  preamble: function() {
-        var stim = '<p style="font-size:40px;font-weight:bold;">'+jsPsych.timelineVariable('name')+'</p>';
-        return stim;
-    },
-  questions: [
-    {prompt: 'Please type everything you can remember about the image of the animal listed above.', 
-    rows: 15, 
-    columns: 70, 
-    required: true}
-  ]
-}
-```
-
-## Step 22: Building a full experiment -- Organize phase 2 task procedure
-
-Now that we have the phase 2 memory test experimental trial, we will organize the phase 2 experimental procedure to put everything together.
-
-We will create an object called "phase2_procedure" and use jsPsych's timeline array and timeline variables function
-
-We'll organize this similarly to how we organized the "phase1_procedure", except we will replace the "stimuli_presentation" trial with the "memory_test" trial. Since we still want to show a fixation cross between each memory test trial, we will keep the fixation cross trial as part of the phase 2 experimental procedure.
-
-These are the knobs we will use for the phase2_procedure:
-
-1) timeline: [fixation, memory_test].
-2) timeline_variables: task_stimuli. 
-3) randomize_order: true.
-
-Lastly, you'll want to use the "timeline.push" function to push the phase2_procedure to the experimental timeline.
-
-```
-//Organize phase 2 task procedure
-var phase2_procedure = {
-      timeline: [fixation, memory_test],
-      timeline_variables: task_stimuli,
-      randomize_order: true,
-    };
-
-
-//Push phase 2 procedure to experimental timeline
-timeline.push(phase2_procedure);
-```
-
-## Step 23: Building a full experiment -- Concluding the experiment
-
-Lastly, we need to add one final trial that will print out a message signaling that the experiment has finished.
-
-This time, rather than writing the code out, I'll challenge you to create the trial and push it to the timeline yourself! Here are some helpful pointers for creating the final trial:
-
-1) Try using the html-keyboard-response plugin
-2) Show participants a message indicating that the experiment has finished and that they need to press the "a" button to exit the experiment.
-3) Use the "choices:" parameter from the html-keyboard-response plugin to define which keyboard presses are accepted in order to exit the experiment.
-4) Make sure to push the trial to the experimental timeline array, or else it won't show up in the experiment!
-
-
-Here is the jsPsych html-keyboard-response plugin documentation page in case it would be helpful to see a demo (Scroll all the way down to see the demos) https://www.jspsych.org/7.3/plugins/html-keyboard-response/
-
-
-
-
-
-
-## Step 24: Running a full experiment woooooooooooo
-
-Now that we have everything organized, let's run the final experiment and see what it looks like!
-
-This is what your final code should look like (I included my version of the final experimental trial that I asked you to create above!)
-
-
-```
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>My experiment</title>
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/jspsych.js"></script>
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/plugin-html-keyboard-response.js"></script> 
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/plugin-image-keyboard-response.js"></script>
-    <script src="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/plugin-survey-text.js"></script>
-
-    <link href="/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
-  
-  </head>
-  <body></body>
-  <script>
-
-//First, we have to initialize jsPsych. We can do this by using the initJsPsych() function, and saving it to a variable called jsPsych
-//We are also adding the "jsPsych.data.displayData()" function, which will show us the raw data at the end of the experiment. 
-//Here, the "on_finish:" function is basically saying: at the end of the jsPsych experiment, run this function (i.e., the "jsPsych.data.displayData();" function), which will show us the raw data at the end of the experiment
-  var jsPsych = initJsPsych({
-    on_finish: function() {
-      jsPsych.data.displayData();
-    }
-  });
-
-
-//Define empty timeline array
-    var timeline = []
-
-
-
-//Create the first experimental trial called "welcome" and use the html-keyboard-response plugin to print a message.
-//Add in HTML formatting to customize the welcome message
-var welcome = {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus: "<p style = 'font-size: 40px; color: blue;'>Welcome to the experiment! Press the space bar to begin.</p>",
-    choices: [' '],
-};
-
-//Push the welcome trial to the experimental timeline
 timeline.push(welcome);
 
+```
+
+Now let's try running the experiment and see what things look like.
+
+As a reminder, click the "Run" button in the top toolbar of Visual Studio Code and then click "Start Debugging". A pop-up should appear indicating which browser you want to run the script in. Click your preferred browser. 
+
+Hopefully you were able to see the welcome message in your web browser!
+
+But if we want to show pictures to accompany the text? So glad you asked.
 
 
-//Compile all the stimuli that you will be using in your experiment
-var task_stimuli = [
-  { animal: "/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/stimuli/clownfish.jpg", name: 'Clownfish'},
-  { animal: "/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/stimuli/caterpillar.jpg", name: 'Caterpillar'},
-  { animal: "/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/stimuli/toucan.jpg", name: 'Toucan'},
-  { animal: "/Users/tuh20985/Desktop/TU Cog 2023 Workshops/jsPsych_workshop/stimuli/polarbear.jpg", name: 'Polar Bear'}
-];
+## Text + Image Instructions
 
+Let's go through a trial where we show text and an image together.
 
+Copy this code and paste it a few rows under the **Text Instructions** code chunk.
 
+As a reminder, we have to push each trial to the experiment, as seen in the final line of code in this chunk.
 
-//Create trial that shows a fixation cross
-var fixation = {
-  type: jsPsychHtmlKeyboardResponse,
-  stimulus: "<p style='font-size:100px;'>+</p>",
-  choices: "NO_KEYS",
-  trial_duration: 500,
-};
-
-
-
-//Create the stimuli presentation trial that you will iterate over
-var stimuli_presentation = {
-  type: jsPsychImageKeyboardResponse,
-  stimulus: jsPsych.timelineVariable('animal'),
-  prompt: '<p>Press a number 1-7 to indicate how much you like the image.</p>',
-  choices: ['1','2','3','4','5','6','7'],
-  stimulus_height: 500,
-  stimulus_width: 500,
+```
+//------------------------------------//
+// Text + Image instructions
+//------------------------------------//
+var experiment_instructions = {
+    type: jsPsychInstructions,
+    pages: function(){
+      pageOne =  "<p><div style ='font-size:2.5vw;'>Next, you will see human- and AI-generated rental listings.</div></p>" +
+      "<p><div style ='font-size:2.5vw;'>Your goal is to determine whether the rental listing</div></p>" +
+      "<p><div style ='font-size:2.5vw;'>was generated by a human or AI.</div></p>" +
+    "<img src='images/question_mark.jpeg' style='width: 15vw; height: 25vh; position:fixed; right: 42vw; top: 2vh;''></img>"
+     return [pageOne]
+  },
+  show_clickable_nav: true
 }
 
+timeline.push(experiment_instructions);
+```
+
+We can break down this code in more detail below:
+
+**var experiment_instructions**: Create a trial object object called "experiment_instructions"
+**type**: The name of the jsPsych plugin we are using for this trial (still using the jsPsychInstructions plugin)
+**pages** The first 3 lines of this part of the code are the same as above, but as you can see, we added a 4th line to include the image of a question mark.
+**show_clickable_nav**: Show the previous/next buttons
+
+The image line of code looks a bit different compared to the texts. You'll see that we have to use <img></img> tags to load in images. We also used new CSS formatting here, which I'll describe more below:
+
+**width**: Define the width of the image
+**height**: Define the height of the image
+**position**: Fixed (This means we want the image to always be in this position on everyone's computer screen).
+**right/left**: specify the horizontal positioning of the image
+**top/bottom**: specify the vertical positioning of the image
+
+You also may be noticing that, rather than using pixels as the unit of measurement, we are using "vw" and "vh".
+
+Whereas pixels are a fixed value, vw (for width) and vh (for height) take into account the relative size of an individual's computer screen. For example, a value of 10vw should look exactly the same on everyone's computer regardless of how big your computer screen is. This is especially important for online studies where everyone's computer screen is different.
+
+Hopefully so far things are making sense! Next, let's shift to making an experimental trial for AIDI.
 
 
-//Organize phase 1 task procedure
-var phase1_procedure = {
-      timeline: [fixation, stimuli_presentation],
-      timeline_variables: task_stimuli,
-      randomize_order: true,
+## Experimental trials
+
+Okay unfortunately this will probably be the most complicated part of the workshop! Here we go (apologies in advance)
+
+![](images/run_task.png){width=100%}
+
+```
+//------------------------------------//
+// Rentals Trial
+//------------------------------------//
+var rentals_trial = {
+type: jsPsychHtmlButtonResponse,
+stimulus: () => {
+  return `<img src="${jsPsych.evaluateTimelineVariable('place_stimuli')}" <div style= "position:fixed; width: 25vw; height: 35vh; left: 55vw; top: 6vh;"></img>` +
+    `<img src="${jsPsych.evaluateTimelineVariable('face_stimuli')}" <div style= "position:fixed; width: 25vw; height: 35vh; left: 26vw; top: 6vh;"></img>` +
+    `<p><div style ='font-size: 1.7vw; font-family: Arial; text-align: left; position: fixed; left: 24vw; width: 56vw; height: 30vh; bottom: 22vh; line-height: 1.2em; border: .3vw transparent; padding: 1vh;'>${jsPsych.evaluateTimelineVariable('text_stimuli')}</p>` 
+},
+choices: ["<p style ='font-size:2vw; position: fixed; left: 38vw; bottom: 8vh;'><b>Human</b></p>", "<p style ='font-size: 2vw;position: fixed; right: 41vw; bottom: 8vh'><b>AI</b></p>"],
+button_html: (choice) => {
+  return `<button class="jspsych-btn" style="width: 15vw; height: 8vh; position: relative; top: 35vh;">${choice}</button>`
+  }
+}
+
+```
+
+**var rentals_trial**: Create a trial object called "rentals_trial"
+**type**: The name of the jsPsych plugin we are using for this trial (the jsPsychHtmlButtonResponse plugin)
+**stimulus**: Yuck! This part looks very confusing. All we're doing here is pulling AirBnb texts (text_stimuli), rental pictures (place_stimuli) and faces (face_stimuli) and formatting each item to define width/height, positioning, etc. 
+**choices**: Define the text that we want on each button, along with some CSS formatting to define the font-size and positioning of the text.
+**button_html**: Customize the width/height and positioning of each button.
+
+Let's revisit the *stimuli* argument in this code chunk, because this is very important! We can find each variable (text_stimuli, place_stimuli, face_stimuli) by looking in the task stimuli JS file that we loaded in the beginning of the experiment (<script src="stimuli/JS files/AIDI_stim.js"></script>). This file represents the CSV file that we used to store the texts and image pathways for rental pictures and face pictures. This is essentially the same as pulling "columns" from the CSV file.
+
+The code above will work for 1 trial. But what if we want to loop through all of the text, places, and faces stimuli?
+
+jsPsych makes that relatively easy for us. We can create an experimental "procedure" that has a timeline of its own, which in this case, reflects the rentals_trial that we created earlier. 
+
+Using an experimental procedure, rather than a single experimental trial, involves a subtle difference in how things get pushed to the timeline. Rather than pushing the **rentals_trial** object that we created above to the timeline, we have to push the entire experimental procedure to the timeline!
+
+```
+
+//------------------------------------//
+// Rentals Timeline Procedure
+//------------------------------------//
+var rentals_procedure = {
+    timeline: [rentals_trial],
+    timeline_variables: rentals_stim,
     };
 
-//Push phase 1 procedure to experimental timeline
-timeline.push(phase1_procedure);
+timeline.push(rentals_procedure);
+
+```
+
+We can walk through this code together:
+
+**var rentals_procedure**: Create an experimental proceudre called "rentals_procedure"
+**timeline**: The name of the trial that will repeat for all the stimuli included in the CSV/JS file that we made
+**timeline_variables**: The name of the array that contains all of the stimuli we will use
+
+Then we push the entire procedure, which includes all the trials with all the stimuli from the CSV/JS file, to the timeline.
+
+This section covers some of the more common experimental modules and can hopefully serve as a basis for us to start building the AIDI experiment. Just to quickly review, we covered the following modules:
+
+**1)** Text instructions
+**2)** Text + Image instructions
+**3)** Experimental trials (Human/AI judgment task)
+
+We'll still need to play around with CSS formatting to make everything look extra nice, but that can be sorted out later!
 
 
+# Surveys and Questionnaires
 
-//Create the memory test experimental trial that you will iterate over
-var memory_test = {
-  type: jsPsychSurveyText,
-  preamble: function() {
-        var stim = '<p style="font-size:40px;font-weight:bold;">'+jsPsych.timelineVariable('name')+'</p>';
-        return stim;
-    },
+Next, we'll discuss how to prepare surveys and questionnaires! We'll go through a few different types of surveys together.
+
+**1)** Likert-scale survey
+**2)** Multiple choice survey
+**3)** Multiple select survey
+**4)** Open-ended text response
+
+
+## Likert-scale survey
+
+Let's start with surveys that use a Likert-style scale.
+
+As part of this survey, we'll borrow from the Questionnaire of Cognitive and Affective Empathy (QCAE) survey which uses Likert-style question to assess people's trait-level empathy. Here is a breakdown of the code parameters:
+
+**var QCAE_survey**: Create a trial object called "QCAE_survey"
+**type**: the name of the plugin for making Likert-scale surveys (jsPsychSurveyLikert)
+**preamble**: The header shown at the top of the page
+**questions**: This array [] reflects all the questions that we will show participants
+**prompt**: The question that you want to ask participants
+**name**: The name/ID of the question.
+**labels**: The answer options for each question
+**required**: true/false. Determines whether the question is required or participant can skip the question
+
+```
+//------------------------------------//
+// Likert-scale survey
+//------------------------------------//
+var QCAE_survey = {
+  type: jsPsychSurveyLikert,
+  preamble: "<p style ='font-size: 2.2vw;'><b>Please answer all of the questions on this page.</b></p>",
   questions: [
-    {prompt: 'Please type everything you can remember about the image of the animal listed above.', 
-    rows: 15, 
-    columns: 70, 
-    required: true}
-  ]
+    {prompt: "<b>1. I sometimes find it difficult to see things from the 'other person's' point of view.</b>", name: 'QCAE_Q1', labels: ["Strongly Disagree", "Slightly Disagree", "Slightly Agree", "Strongly Agree"], required: true},
+    {prompt: "<b>2. I am usually objective when I watch a film or play, and I don't often get completely caught up in it.</b>", name: 'QCAE_Q2', labels: ["Strongly Disagree", "Slightly Disagree", "Slightly Agree", "Strongly Agree"], required: true},
+    {prompt: "<b>3. I try to look at everybody's side of a disagreement before I make a decision.</b>", name: 'QCAE_Q3', labels: ["Strongly Disagree", "Slightly Disagree", "Slightly Agree", "Strongly Agree"], required: true},
+]
 }
 
-
-//Organize phase 2 task procedure
-var phase2_procedure = {
-      timeline: [fixation, memory_test],
-      timeline_variables: task_stimuli,
-      randomize_order: true,
-    };
-
-//Push phase 2 procedure to experimental timeline
-timeline.push(phase2_procedure);
-
-
-
-//Experiment has finished: Use the html-keyboard-response plugin to print a thank you message.
-var experiment_finished = {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'Thank you for participating! Press "a" to exit.',
-    choices: ['a'],
-};
-
-//Push experiment_finished trial to experimental timeline
-timeline.push(experiment_finished);
-
-
-
-//Run the experiment!
-  jsPsych.run(timeline);
-
-  </script>
-</html>
+timeline.push(QCAE_survey);
 ```
 
 
+## Multiple Choice Survey
 
+This next survey uses multiple choice options.
 
-# --- Conclusion & General Notes | Review, Pavlovia compatibility, tutorial suggestions, etc. --- 
+This survey draws from the Smartphone Addiction Scale which uses multiple choice to assess people's reliance/dependency on smartphones.
+
+Let's walk through the code arguments:
+
+**var MTES_SAS**: Create a trial object called "MTES_SAS"
+**type**: the name of the plugin for making multiple choice surveys (jsPsychSurveyMultiChoice)
+**questions**: This array [] reflects all the questions that we will show participants
+**prompt**: The question that you want to ask participants
+**name**: The name/ID of the question.
+**options**: The answer options for each question
+**horizontal**: true/false. Define as true if you want the answer options to be shown horizontally, false for vertically.
+**required**: true/false. Determines whether the question is required or participant can skip the question
+
 ```
-Yael Niv’s lab has a super helpful task repository, which also includes tutorials: https://nivlab.github.io/jspsych-demos/
+//------------------------------------//
+// Multiple Choice survey
+//------------------------------------//
+var MTES_SAS = {
+    type: jsPsychSurveyMultiChoice,
+    questions: [
+      {
+        prompt: "<b>1. I have missed planned work due to smartphone use</b>", 
+        name: 'MTES_SAS_MissedPlans', 
+        options: ['Strongly Disagree', 'Disagree', 'Weakly Disagree', 'Weakly Agree', 'Agree', 'Strongly Agree'], 
+        horizontal: true,
+        required: true
+      }, 
+      {
+        prompt: "<b>2. I have a hard time concentrating in class, while doing assignments, or while working due to smartphone use</b>", 
+        name: 'MTES_SAS_Concentrating', 
+        options: ['Strongly Disagree', 'Disagree', 'Weakly Disagree', 'Weakly Agree', 'Agree', 'Strongly Agree'], 
+        horizontal: true,
+        required: true
+      },
+      {
+        prompt: "<b>3. I feel pain in my wrists or at the back of my neck while using a smartphone</b>", 
+        name: 'MTES_SAS_Pain', 
+        options: ['Strongly Disagree', 'Disagree', 'Weakly Disagree', 'Weakly Agree', 'Agree', 'Strongly Agree'],
+        horizontal: true, 
+        required: true
+      }
+    ],
+  };
+  
 
-Winson Yang has a great YouTube series for jsPsych tutorials: https://www.youtube.com/playlist?list=PLtdKTIOUlb42qG962wz30fzlUMibJCGQW
-Caveat: Most jsPsych tutorials use an older version of jsPsych (jsPsych 6.0) which uses a different syntax structure for calling plugins compared to jsPsych >7.0
+timeline.push(MTES_SAS);
 
-Scrimba has a really helpful (but long) JavaScript tutorial that does a pretty good job of instructing new users on how to integrate JavaScript, HTML, and CSS
-https://scrimba.com/learn/learnjavascript
-
-jsPsych Discussion Forum: https://github.com/jspsych/jsPsych/discussions
-Super friendly forum for asking questions about jsPsych (I have asked some truly asinine questions on here and no has one judged me!!) 
-
-I included an online version of our experiment in a script titled "index.html" in the jsPsych_workshop folder. I also included a few slides in the Outro video that go through the minor coding tweaks you need to make in order for your script to run online.
-
-Hope this workshop has been helpful! :) 
 ```
-```{r Conclusion Video, echo = FALSE}
-vembedr::embed_url("https://www.youtube.com/watch?v=n63bv-tKInk")
+
+
+## Multiple Select Survey
+
+Next, we'll discuss a survey that uses multiple select options (think check-box style questions).
+
+This survey draws from the Mobile Technology Engagement Scale (MTES) which assesses which social media apps people like to use. And I just added a random question about AI systems for illustrative purposes.
+
+Here's what the code looks like:
+
+**var TechUse**: Create a trial object called "TechUse"
+**type**: the name of the plugin for making multiple choice surveys (jsPsychSurveyMultiSelect)
+**questions**: This array [] reflects all the questions that we will show participants
+**prompt**: The question that you want to ask participants
+**name**: The name/ID of the question.
+**options**: The answer options for each question
+**required**: true/false. Determines whether the question is required or participant can skip the question
+
+```
+//------------------------------------//
+// Multiple Select survey
+//------------------------------------//
+  var TechUse = {
+    type: jsPsychSurveyMultiSelect,
+    questions: [
+      {
+    prompt: "<p><div style = 'font-size: 1.5vw;'><b>Which of the following social media platforms do you use? (check all that apply)</b></div></p>", 
+    options: ['Instagram','Twitter','Facebook','Snapchat', 'TikTok','YouTube','Reddit','LinkedIn', 'Pinterest', 'WhatsApp', 'None of the above'],
+    name: 'TechUse_socialmedia',
+    horizontal: false, 
+    required: true,
+      },
+      {
+    prompt: "<p><div style = 'font-size: 1.5vw;'><b>Which of the following AI systems do you use?</b></div></p>", 
+    options: ['ChatGPT', 'Google Gemini', 'Claude', 'None of the above'],
+    name: 'TechUse_AI',
+    horizontal: false, 
+    required: true,
+      }
+    ],
+  }
+  
+timeline.push(TechUse);
+
 ```
 
 
+## Open-ended Text Response
+
+Open-ended text responses are exactly what they sound like -- basically just a text box that participant can write as much or as little as they'd like.
+
+Let's break down this code in more detail:
+
+**var AI_questions**: Create a trial object called "AI_questions"
+**type**: the name of the plugin for making multiple choice surveys (jsPsychSurveyText)
+**questions**: This array [] reflects all the questions that we will show participants
+**prompt**: The question that you want to ask participants
+**rows**: How long you want the text box to be. Default value is 1.
+**columns**: How wide you want the text box to be. Default value is 40.
+**name**: The name/ID of the question.
+**required**: true/false. Determines whether the question is required or participant can skip the question
+
+```
+//------------------------------------//
+// Open-ended Text Response
+//------------------------------------//
+var AI_questions = {
+type: jsPsychSurveyText,
+questions: [
+  {prompt: "<p><div style ='font-size:2vw;'>What are your primary motivations for using AI?</div></p>", 
+  rows: 15, 
+  columns: 70, 
+  name: "AI_motivations", 
+  required: true}
+]
+}
+
+timeline.push(AI_questions);
+
+```
+
+Now, so far we've been pushing each individual trial to the timeline, which can get repetitive and redundant! We can use the same timeline procedure that we used for the rentals_procedure for the entire experiment.
+
+Let's see what that looks like. **In order for this to work properly, we'll need to delete all instances of timeline.push() that we've included in the script thus far**.
+
+```
+
+//------------------------------------//
+// Organize experimental procedure
+//------------------------------------//
+var AIDI_procedure = {
+    timeline: [welcome, experiment_instructions, rentals_procedure, QCAE_survey, MTES_SAS, TechUse, AI_questions],
+}
+timeline.push(AIDI_procedure);
+
+
+```
+
+As you can see, we are creating a new trial object called "AIDI_procedure" and defining the timeline with all the trials that we are interested in using for the experiment, and then we are just pushing this mega procedure at the very end before we run the experiment.
+
+This is a helpful way to keep track of the sequence of trials in a experiment.
+
+
+# Conclusion
+
+Hopefully this has been helpful! jsPsych can feel very intimidating, but once you get a better idea of the syntax structure, hopefully it doesn't feel too hard.
+
+Feel free to Slack me if you have any questions as things move forward and let's start putting the AIDI experiment together!!!
