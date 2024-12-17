@@ -866,7 +866,6 @@ timeline.push(AIDI_procedure);
 
   </script>
 </html>
-
 ```
 
 Hopefully this has been helpful! jsPsych can feel very intimidating, but once you get a better idea of the syntax structure, hopefully it doesn't feel too hard.
