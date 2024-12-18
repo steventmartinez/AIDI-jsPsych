@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = TRUE, error = FALSE)
 
 # Description
 
-This workshop will cover how to use [jsPsych version 8.1.0](https://github.com/jspsych/jsPsych/releases/tag/jspsych%408.1.0) to build psychological experiments. jsPsych is a free, open-source software that employs a JavaScript framework for creating behavioral experiments that run in a web browser. It's a popular alternative to PsychoPy and E-Prime for task development, can be used for behavioral and neuroimaging tasks as well as online studies.
+This workshop will cover how to use [jsPsych version 8.1.0](https://github.com/jspsych/jsPsych/releases/tag/jspsych%408.1.0) to build psychological experiments. jsPsych is a free, open-source software that employs a JavaScript framework for creating behavioral experiments that run in a web browser. It's a popular alternative to PsychoPy and E-Prime for task development and can be used for behavioral tasks, neuroimaging tasks, and online studies.
 
 
 ## Outline
