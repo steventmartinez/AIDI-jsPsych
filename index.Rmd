@@ -277,7 +277,7 @@ var welcome = {
 
 ![](images/text_instructions.png)
 
-Here's what the code to show instructions looks like. Let's break down each part of the code.
+Here's what the code to show instructions looks like. Let's break down each part of the code:
 
 **var welcome**: Create a trial object object called "welcome"<br>
 **type**: The name of the jsPsych plugin we are using for this trial; in this case, we are using the jsPsychInstructions plugin.<br>
@@ -286,9 +286,9 @@ Here's what the code to show instructions looks like. Let's break down each part
 
 In the **pages** lines of code, you'll see that we are using CSS formatting to customize what the text looks like (i.e., font-size, color). Learning how to incorporate CSS formatting is a very important part of jsPsych. We'll talk about that more soon.
 
-The \<p\> \<\/p\> tag defines a paragraph.
-The "style" attribute on a \<p\> tag assigns a unique style to that paragraph.
-Here, we are using the <\p\> tag and the "style" attribute to change the "font-size" parameter to 2.5vw and the "color" parameter to green.
+The \<p\> \<\/p\> tag is used for text.
+The "style" attribute on a \<p\> tag assigns a unique style to that text.
+Here, we are using the "style" attribute to change the "font-size" parameter to 2.5vw (we'll get more into what vw means later) and the "color" parameter to green.
 
 
 
@@ -312,7 +312,7 @@ As a reminder, click the "Run" button in the top toolbar of Visual Studio Code a
 
 Hopefully you were able to see the welcome message in your web browser!
 
-But if we want to show pictures to accompany the text? So glad you asked.
+But if we want to show pictures and text together? So glad you asked.
 
 
 ## Text + Image Instructions
