@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = TRUE, error = FALSE)
 
 # Description
 
-This workshop will cover how to use [jsPsych version 8.1.0](https://github.com/jspsych/jsPsych/releases/tag/jspsych%408.1.0) to build psychological experiments. jsPsych is a free, open-source software that employs a JavaScript framework for creating behavioral experiments that run in a web browser. It's a popular alternative to PsychoPy and E-Prime for task development, can be used in both behavioral and neuroimaging tasks, and supports online study capabilities.
+This workshop will cover how to use [jsPsych version 8.1.0](https://github.com/jspsych/jsPsych/releases/tag/jspsych%408.1.0) to build psychological experiments. jsPsych is a free, open-source software that employs a JavaScript framework for creating behavioral experiments that run in a web browser. It's a popular alternative to PsychoPy and E-Prime for task development, can be used for behavioral and neuroimaging tasks as well as online studies.
 
 
 ## Outline
@@ -56,11 +56,11 @@ Before the workshop:
 
 ## Open AIDI-jsPsych folder in VS Code
 
-To get things started, let's open the *AIDI-jsPsych* folder in Visual Studio Code Editor. In Visual Studio Code, click the "File" tab then the "Open Folder" tab and navigate to wherever you have the *AIDI-jsPsych* folder downloaded. 
+To get things started, let's open the **AIDI-jsPsych** folder in Visual Studio Code Editor. In Visual Studio Code, click the "File" tab then the "Open Folder" tab and navigate to wherever you have the **AIDI-jsPsych** folder downloaded. 
 
-Once you open the AIDI-jsPsych folder, you may have to click the Folder icon in the top left to see the full directory.
+Once you open the **AIDI-jsPsych** folder, you may have to click the Folder icon in the top left to see the full directory.
 
-Here's what your directory should look like once you've opened up the *AIDI-jsPsych* folder in Visual Studio Code.
+Here's what your directory should look like once you've opened up the **AIDI-jsPsych** folder in Visual Studio Code.
 
 
 ![](images/VSCode_directory.png){width=40%}
@@ -68,20 +68,20 @@ Here's what your directory should look like once you've opened up the *AIDI-jsPs
 
 # Setting Up jsPsych
 
-Today will start with an introduction to the syntax structure that jsPsych uses, which relies on JavaScript, HTML, and CSS.
+Today's workshop will start with an introduction to the syntax structure that jsPsych uses, which includes HTML, CSS, and JavaScript.
 
-**HTML** stands for HyperText Markup Language and is the code that is used to structure a web page and its content.
-**CSS** stands for Cascading Style Sheets language and is the code that is used to stylize/customize elements that appear on the HTML page
+**HTML** stands for HyperText Markup Language and is the code that is used to structure a web page and its content.<br>
+**CSS** stands for Cascading Style Sheets language and is the code that is used to stylize/customize elements that appear on the HTML page.<br>
 **JavaScript** is the programming language that is used to make interactive webpages. Ultimately, jsPsych, through JavaScript, has built-in plugins that work with HTML and CSS capabilities in order to make a web page functional. Think clicking buttons, submitting keyboard responses, viewing images, etc.
 
-We'll be using HTML, CSS, and JavaScript together throguhout out experiment. Before we do that, let's get our script set-up!
+We'll be using HTML, CSS, and JavaScript together throughout out experiment. Before we do that, let's get our script set-up!
 
 
 ## Create an HTML file
 
 First, let's open up the **experiment_practice.html** file in the AIDI-jsPsych folder. This is a completely empty script, but we will use this script to start putting our experiment together.
 
-To get things started, we need to add some basic code that nearly all HTML documents have in common. This HTML code allows JavaScript to run scripts on a web page.
+To get things started, we need to add some basic code that all HTML documents have in common. This HTML code allows JavaScript to run scripts on a web page.
 
 ```
 <!DOCTYPE html>
@@ -100,7 +100,7 @@ background-color: #F0F0F0;
 
 ```
 
-This code may look like a lot, but really isn't doing that much. All we are doing here is saying, make an HTML document with a gray background (background-color: #F0F0F0) and make the title of the tab "AIDI experiment -- practice".
+This code may look like a lot, but really isn't doing that much. All we are doing here is saying: make an HTML document with a gray background (background-color: #F0F0F0) and make the title of the web page tab "AIDI experiment -- practice".
 
 Next, let's run the script so we can see what the web page actually looks like!
 
@@ -111,7 +111,7 @@ In Visual Studio Code, click the "Run" button in the top toolbar and then click 
 
 ![](images/run_script.png){width=50%}
 
-At this point, a blank web page should appear and the title of the tab will be "AIDI experiment -- practice". 
+At this point, a blank web page should appear and the title of the tab will be "**AIDI experiment -- practice**". 
 
 ![](images/AIDI_experiment_tab.png){width=50%}
 
@@ -123,9 +123,9 @@ To load a plugin, we need to add a \<script\> \<\/script\> tag. These tags work 
 
 To make things easier, I've filled in the script tags for us. 
 
-In the **Load Psych libraries** section, you can see that I am just pulling files from the jspsych/Dist folder. The jsPsych.js file is the main jsPsych file. The different plugins (instructions.js, html-button-response.js, survey-text.js, etc) contain the different functionalities that we will use to build our experiment.
+In the **Load Psych libraries** section, you can see that I am pulling files from the jspsych/Dist folder. The jsPsych.js file is the main jsPsych program. The different plugins (plugin-instructions.js, plugin-html-button-response.js, plugin-survey-text.js, etc) contain the different functions that we will use to build our experiment.
 
-In the **Load task stimuli from the CSV we made** section, I've converted our CSV file into a JS file, so that we can use it to load in our stimuli for the experiment.
+In the **Load task stimuli from the CSV we made** section, I've converted the CSV file that we'll use to store our stimuli into a JS file, so that we can use it to load in our stimuli for the experiment.
 
 In the **Load jsPsych's default CSS styling script (which handles aesthetics)**, I've loaded in jsPsych's default CSS file. As a reminder, CSS is the code that is used to stylize/customize elements that appear on the HTML page, and the jsPsych creators developed their own CSS code for the purposes of jsPsych.
 
@@ -169,11 +169,11 @@ To add JavaScript code directly to the webpage, we will need to add a pair of \<
 
 To initialize jsPsych, we will need to use the initJsPsych() function, and save it to a variable called "jsPsych".
 
-All jsPsych experiments are defined by a timeline. The timeline is an array that contains the set of trials we want to run in the experiment. At the very end of the script, you'll see the command *jsPsych.run(timeline);*.
+All jsPsych experiments are defined by a timeline. The timeline is an array that contains the set of trials we want to run in the experiment. At the very end of the script, you'll see the command **jsPsych.run(timeline)**. This command runs the entire experiment.
 
-We can define an empty timeline array by creating a variable called "timeline" and assigning empty brackets to reflect an empty timeline array.
+Every jsPsych experiment starts off by creating a variable called "timeline" and assigning empty brackets to reflect an empty timeline array. We'll push/add trials to this timeline array as we create them.
 
-We'll add trials to this timeline array as we create them.
+We'll talk more about timelines after we make our first Text Instructions trial.
 
 ```
 <!DOCTYPE html>
@@ -238,7 +238,7 @@ jsPsych.run(timeline);
 
 Now that we have jsPsych ready to go, we can start building the experiment! For the rest of the workshop, I'm going to show a template of some of the more common types of experimental modules (i.e., instructions, experimental trials, surveys/questionnaires). My hope is that we can use each of these modules as a template to build the AIDI experiment. 
 
-Each of these experimental modules use a different jsPsych plugin. The creators of jsPsych were kind enough to provide documentation that includes a demo of how each plugin works. I'll list the documentation and demo for each plugin in the order that each plugin is shown in the script below.
+Each of these experimental modules use a different jsPsych plugin. The creators of jsPsych were kind enough to provide documentation that includes a demo of how each plugin works. I'll list the documentation and demo for each plugin in the order that each plugin is shown in the script below. 
 
 **jsPsychInstructions**: https://www.jspsych.org/v8/plugins/instructions/.<br>
 **jsPsychHtmlButtonResponse**: https://www.jspsych.org/v8/plugins/html-button-response/.<br>
@@ -249,12 +249,12 @@ Each of these experimental modules use a different jsPsych plugin. The creators 
 **jsPsychSurveyText**: https://www.jspsych.org/v8/plugins/survey-text/. 
 
 
-Let's try going through each type of experimental module 1 at a time.
+Let's try going through each type of experimental module one at a time.
 
 
 ## Text Instructions
 
-To start an experiment, it's pretty common to show a welcome message. jsPsych has an [instructions] (https://www.jspsych.org/v8/plugins/instructions/) plugin that makes showing instructions pretty straightforward.
+To start an experiment, it's pretty common to show a welcome message. jsPsych has an [instructions](https://www.jspsych.org/v8/plugins/instructions/) plugin that makes showing instructions pretty straightforward.
 
 Copy this code and paste it a few rows under the **var timeline = []** code.
 
@@ -280,9 +280,9 @@ Here's what the code to show instructions looks like. Let's break down each part
 **var welcome**: Create a trial object object called "welcome"<br>
 **type**: The name of the jsPsych plugin we are using for this trial; in this case, we are using the jsPsychInstructions plugin.<br>
 **pages:** This part is a bit funky, but all we're doing here is defining the text we want to show to participants. Each line of code represents a separate line of text.<br>
-**show_clickable_nav**: Show the previous/next buttons<br>
+**show_clickable_nav**: Show the previous/next buttons
 
-In the *pages* lines of code, you'll see that we are using CSS formatting to customize what the text looks like (i.e., font-size, color). Learning how to incorporate CSS formatting is a very important part of jsPsych. We'll talk about that more soon.
+In the **pages** lines of code, you'll see that we are using CSS formatting to customize what the text looks like (i.e., font-size, color). Learning how to incorporate CSS formatting is a very important part of jsPsych. We'll talk about that more soon.
 
 The \<p\> \<\/p\> tag defines a paragraph.
 The "style" attribute on a \<p\> tag assigns a unique style to that paragraph.
@@ -300,8 +300,9 @@ Copy this code and paste it under the **Text Instructions** code chunk.
 
 ```
 timeline.push(welcome);
-
 ```
+
+Think of timeline.push(welcome) as changing our timeline array from **timeline = [];** to **timeline = [welcome];**.
 
 Now let's try running the experiment and see what things look like.
 
@@ -640,7 +641,7 @@ This is a helpful way to keep track of the sequence of trials in a experiment.
 
 # Conclusion
 
-In case it helps to see it all together, this is what the complete script should look like (which is also in the AIDI_experiment_complete.html file in the AIDI-jsPsych folder we downloaded).
+In case it helps to see it all together, this is what the complete script should look like (which is also in the **AIDI_experiment_complete.html** file in the AIDI-jsPsych folder we downloaded).
 
 ```
 <!DOCTYPE html>
