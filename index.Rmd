@@ -389,7 +389,7 @@ button_html: (choice) => {
 
 ```
 
-![](images/rentals_trial1.png){width=60%}
+![](images/rentals_trial1.png)
 
 Let's go through each line of code to try and sort this out!
 
@@ -419,9 +419,10 @@ var rentals_procedure = {
 timeline.push(rentals_procedure);
 ```
 
-![](images/rentals_trial1.png){width=60%}<br>
-![](images/rentals_trial2.png){width=60%}<br>
-![](images/rentals_trial3.png){width=60%}
+![](images/rentals_trial1.png)
+
+![](images/rentals_trial2.png)
+![](images/rentals_trial3.png)
 
 We can walk through this code together:
 
