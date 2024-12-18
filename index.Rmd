@@ -420,7 +420,6 @@ timeline.push(rentals_procedure);
 ```
 
 ![](images/rentals_trial1.png)
-
 ![](images/rentals_trial2.png)
 ![](images/rentals_trial3.png)
 
