@@ -3,6 +3,9 @@
 
 __**Content creator:**__ Steven Martinez
 
+
+### [Full Workshop Recording](https://tuprd-my.sharepoint.com/:v:/r/personal/jchein_temple_edu/Documents/CABLAB/Projects/Interventions%20for%20AI%20Detection/AIDI-jspsych%20workshop%20recording.mp4?csf=1&web=1&e=gqgbnr)
+
 ## Description
 This workshop will cover how to use [jsPsych version 8.1.0](https://github.com/jspsych/jsPsych/releases/tag/jspsych%408.1.0) to build psychological experiments. jsPsych is a free, open-source software that employs a JavaScript framework for creating behavioral experiments that run in a web browser. It's a popular alternative to PsychoPy and E-Prime for task development, is used primarily in behavioral tasks, and supports online study capabilities.  
 
